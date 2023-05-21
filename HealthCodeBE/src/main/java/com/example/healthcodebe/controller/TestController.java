@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/test")
-public class HomeController {
+public class TestController {
     @RequestMapping("/hello.json")
     public @ResponseBody String Hello(){
         return "Hello World!";

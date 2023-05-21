@@ -83,7 +83,7 @@ INSERT INTO `test_record` (id_number, tube_id, date, sampler_id_number, tester_i
 -- ----------------------------
 DROP TABLE IF EXISTS `tube`;
 CREATE TABLE `tube`  (
-    `tube_id` int(12) NOT NULL AUTO_INCREMENT UNIQUE,
+    `tube_id` int(12) NOT NULL UNIQUE,
     `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `provider` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
     `expiration_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -93,14 +93,14 @@ CREATE TABLE `tube`  (
 -- ----------------------------
 -- Records of tube
 -- ----------------------------
-INSERT INTO `tube` (date, provider, expiration_date) VALUES (NOW(), 'xxx company', NOW());
+INSERT INTO `tube` (tube_id, date, provider, expiration_date) VALUES (0, NOW(), 'xxx company', NOW());
 
 -- ----------------------------
 -- Table structure for vaccine
 -- ----------------------------
 DROP TABLE IF EXISTS `vaccine`;
 CREATE TABLE `vaccine`  (
-    `vacc_id` int(12) NOT NULL AUTO_INCREMENT UNIQUE,
+    `vacc_id` int(12) NOT NULL UNIQUE,
     `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `provider` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
     `expiration_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -110,7 +110,7 @@ CREATE TABLE `vaccine`  (
 -- ----------------------------
 -- Records of vaccine
 -- ----------------------------
-INSERT INTO `vaccine` (date, provider, expiration_date) VALUES (NOW(), 'xxx company', NOW());
+INSERT INTO `vaccine` (vacc_id, date, provider, expiration_date) VALUES (0, NOW(), 'xxx company', NOW());
 
 -- ----------------------------
 -- Table structure for health code
@@ -134,7 +134,7 @@ INSERT INTO `health_code` (id_number, color, update_time, qr_code) VALUES ('3333
 -- ----------------------------
 DROP TABLE IF EXISTS `place_code`;
 CREATE TABLE `place_code`  (
-    `place_id` int(12) NOT NULL AUTO_INCREMENT UNIQUE,
+    `place_id` int(12) NOT NULL UNIQUE,
     `phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
     `province` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
     `city` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
@@ -147,7 +147,7 @@ CREATE TABLE `place_code`  (
 -- ----------------------------
 -- Records of place code
 -- ----------------------------
-INSERT INTO `place_code` (province, city, county, village, detail_addr) VALUES ('Zhejiang', 'Hangzhou', 'Xihu', 'Sandun', 'asdf');
+INSERT INTO `place_code` (place_id, province, city, county, village, detail_addr) VALUES (0, 'Zhejiang', 'Hangzhou', 'Xihu', 'Sandun', 'asdf');
 
 -- ----------------------------
 -- Table structure for place visit
@@ -170,7 +170,7 @@ INSERT INTO `place_visit` (id_number, place_id, visit_time) VALUES ('33333333333
 -- ----------------------------
 DROP TABLE IF EXISTS `test_position`;
 CREATE TABLE `test_position`  (
-    `tp_id` int(12) NOT NULL AUTO_INCREMENT UNIQUE,
+    `tp_id` int(12) NOT NULL UNIQUE,
     `province` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
     `city` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
     `county` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
@@ -183,7 +183,7 @@ CREATE TABLE `test_position`  (
 -- ----------------------------
 -- Records of test position
 -- ----------------------------
-INSERT INTO `test_position` (province, city, county, village, detail_addr, manager_id_number) VALUES ('Zhejiang', 'Hangzhou', 'Xihu', 'Sandun', 'asdf', '333333333333333333');
+INSERT INTO `test_position` (tp_id, province, city, county, village, detail_addr, manager_id_number) VALUES (0, 'Zhejiang', 'Hangzhou', 'Xihu', 'Sandun', 'asdf', '333333333333333333');
 
 -- ----------------------------
 -- Table structure for test time
@@ -241,7 +241,7 @@ INSERT INTO `color_change` (id_number, time, tocolor, reason) VALUES ('333333333
 -- ----------------------------
 DROP TABLE IF EXISTS `authorize`;
 CREATE TABLE `authorize`  (
-    `authorize_id` int(12) NOT NULL AUTO_INCREMENT UNIQUE,
+    `authorize_id` int(12) NOT NULL UNIQUE,
     `author_id_number` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `user_id_number` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -254,14 +254,14 @@ CREATE TABLE `authorize`  (
 -- ----------------------------
 -- Records of authorize record
 -- ----------------------------
-INSERT INTO `authorize` (author_id_number, user_id_number, time, admin, sampler, tester) VALUES ('333333333333333333', '333333333333333333', NOW(), 0, 1, 1);
+INSERT INTO `authorize` (authorize_id, author_id_number, user_id_number, time, admin, sampler, tester) VALUES (0, '333333333333333333', '333333333333333333', NOW(), 0, 1, 1);
 
 -- ----------------------------
 -- Table structure for complain
 -- ----------------------------
 DROP TABLE IF EXISTS `complain`;
 CREATE TABLE `complain`  (
-    `complain_id` int(12) NOT NULL AUTO_INCREMENT UNIQUE,
+    `complain_id` int(12) NOT NULL UNIQUE,
     `time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `id_number` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
     `content` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
@@ -274,4 +274,4 @@ CREATE TABLE `complain`  (
 -- ----------------------------
 -- Records of complain
 -- ----------------------------
-INSERT INTO `complain` (time, id_number, content, result, withdraw) VALUES (NOW(), '333333333333333333', 'asdfasdf', 0, 0);
+INSERT INTO `complain` (complain_id, time, id_number, content, result, withdraw) VALUES (0, NOW(), '333333333333333333', 'asdfasdf', 0, 0);

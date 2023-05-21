@@ -4,33 +4,23 @@ server:
 spring:
   devtools:
     restart:
-      enabled: true  #???????
-      additional-paths: src/main/java #????
-      exclude: WEB-INF/**
+      enabled: true
+      additional-paths: src/main/java
   freemarker:
-    cache: false    #??????????????
+    cache: false
 
   datasource:
     name: sp
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://xxxx.xxxx:3906/mylearnlab?characterEncoding=utf8&useSSL=false
-    username: xxx
-    password: xxxxxxxx
+    url: jdbc:mysql://mysql.sqlpub.com:3306/backendtest?characterEncoding=UTF8&useSSL=false
+    username: dbadmin
+    password: 411fa14dbeae913b
     type: com.alibaba.druid.pool.DruidDataSource
-    filters: stat
-    maxActive: 20
-    initialSize: 1
-    maxWait: 60000
-    minIdle: 1
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
-# ????sql??
+
+
+
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
