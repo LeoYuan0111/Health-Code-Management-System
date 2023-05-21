@@ -32,7 +32,7 @@ public class Generator {
     private static final String SERVICE_PROJECT_PATH = "/";
 
     // 表名,多个表使用英文逗号分割
-    private static final String[] TBL_NAMES = {"tube"};//"account", "person", "vaccination_record", "test_record", "tube", "vaccine", "health_code", "place_code", "place_visit", "test_position", "test_time", "color_change", "authorize", "complain"};
+    private static final String[] TBL_NAMES = {"test_position"};//"account", "person", "vaccination_record", "test_record", "tube", "vaccine", "health_code", "place_code", "place_visit", "test_position", "test_time", "color_change", "authorize", "complain"};
 
     // 表名的前缀,从表生成代码时会去掉前缀
     private static final String TABLE_PREFIX = "";
