@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import LoginForm from '../components/LoginForm.vue'
 import RegisterForm from '@/components/RegisterForm.vue';
+import HomePic from '@/components/HomePic.vue';
+import IconBubble from '@/components/icons/IconBubble.vue'
 
 const login_drawer = ref(false)
 const register_drawer = ref(false)
@@ -12,9 +14,17 @@ const advanced_drawer = ref(false)
 <template>
   <el-container>
     <el-header>
-      <h1 class="title">健康码管理系统</h1>
+      <el-row>
+        <el-col :span="4" :offset="2" class="icon">
+          <IconBubble />
+        </el-col>
+        <el-col :span="18">
+          <h1 class="title">健康码管理系统</h1>
+        </el-col>
+      </el-row>
     </el-header>
     <el-main class="main">
+      <HomePic class="main-pic"/>
       <el-button type="primary" class="main-button" @click="login_drawer = true">登录</el-button>
       <el-button type="primary" class="main-button" @click="register_drawer = true">注册</el-button>
       <el-button type="primary" class="main-button" @click="advanced_drawer = true">高级身份认证</el-button>
@@ -56,4 +66,16 @@ const advanced_drawer = ref(false)
   font-size: 1.2rem;
   font-weight: bolder;
 }
+.main-pic {
+  width: 90%;
+  margin: 1rem 0;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
 </style>
