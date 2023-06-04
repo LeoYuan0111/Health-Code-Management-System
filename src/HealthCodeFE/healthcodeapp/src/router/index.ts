@@ -19,7 +19,17 @@ const router = createRouter({
     {
       path: '/main',
       name: 'main',
-      component: () => import('../views/MainView.vue')
+      component: () => import('../views/UserMainView.vue')
+    },
+    {
+      path: '/user/rna_record',
+      name: 'user_rna_record',
+      component: () => import('../views/UserRNARecordView.vue')
+    },
+    {
+      path: '/user/vac_record',
+      name: 'user_vac_record',
+      component: () => import('../views/UserVacRecordView.vue')
     },
     {
       path: '/sampler' ,

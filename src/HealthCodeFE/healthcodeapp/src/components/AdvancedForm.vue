@@ -12,7 +12,7 @@ const router = useRouter()
 
 const onSubmit = () => {
 	if (form.role == 'sampler') {
-		router.push('/sampler_main')
+		router.push('/sampler')
 	} else if (form.role == 'detector') {
 		router.push('/detector')
 	} else if (form.role == 'manager') {

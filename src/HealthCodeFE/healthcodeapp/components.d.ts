@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElOption: typeof import('element-plus/es')['ElOption']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
@@ -57,10 +58,12 @@ declare module '@vue/runtime-core' {
     IconTube: typeof import('./src/components/icons/IconTube.vue')['default']
     LoginForm: typeof import('./src/components/LoginForm.vue')['default']
     RegisterForm: typeof import('./src/components/RegisterForm.vue')['default']
+    RNARecord: typeof import('./src/components/RNARecord.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SamperVaccinum: typeof import('./src/components/icons/SamperVaccinum.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    VacRecord: typeof import('./src/components/VacRecord.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }

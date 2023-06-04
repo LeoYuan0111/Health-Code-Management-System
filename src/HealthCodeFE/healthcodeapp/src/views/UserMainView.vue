@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import moment from 'moment'
 import IconQuery from '@/components/icons/IconQuery.vue'
@@ -58,7 +58,7 @@ onMounted(() => {
 						</el-row>
 					</el-row>
 					<el-row class="query-block">
-						<el-button class="query-button">
+						<el-button class="query-button" @click="router.push('/user/rna_record')">
 							核酸检测查询
 						</el-button>
 					</el-row>
@@ -69,12 +69,9 @@ onMounted(() => {
 						<el-row class="vac-result">
 							已完成加强接种
 						</el-row>
-						<!-- <el-row class="vac-result">
-							加强接种
-						</el-row> -->
 					</el-row>
 					<el-row class="query-block">
-						<el-button class="query-button">
+						<el-button class="query-button" @click="router.push('/user/vac_record')">
 							疫苗接种查询
 						</el-button>
 					</el-row>
