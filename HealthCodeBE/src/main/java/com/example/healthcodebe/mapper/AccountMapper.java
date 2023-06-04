@@ -3,6 +3,9 @@ package com.example.healthcodebe.mapper;
 import com.example.healthcodebe.entity.Account;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -15,4 +18,12 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface AccountMapper extends BaseMapper<Account> {
 
+    Account getAccountInfo(@Param("condition") Map<String, Object> condition);
+
+    Account getAccountById(String id);
+    void add(Account account);
+
+    boolean updatePasswd(@Param("condition") Map<String, Object> condition);
+
+    boolean updatePhoneNumber(@Param("condition") Map<String, Object> condition);
 }

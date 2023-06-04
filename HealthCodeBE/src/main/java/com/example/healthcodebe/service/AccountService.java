@@ -4,6 +4,7 @@ import com.example.healthcodebe.entity.Account;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -17,4 +18,16 @@ public interface AccountService extends IService<Account> {
     List<Account> getAllAccounts();
 
     int createAccount(Account account);
+
+    Account getAccountById(String id);
+
+    Account getAccountInfo(Map<String, Object> condition);
+
+    String getToken(Account user, long time);
+
+    void addAccount(Account account);
+
+    boolean updatePasswd(Map<String, Object> map);
+
+    boolean updatePhoneNumber(Map<String, Object> map);
 }

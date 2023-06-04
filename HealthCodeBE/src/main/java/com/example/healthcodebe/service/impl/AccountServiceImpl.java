@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import org.springframework.stereotype.Service;
+
+//import javax.annotation.Resource;
+import java.util.*;
+
 /**
  * <p>
  *  服务实现类
@@ -30,7 +37,46 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     }
 
     @Override
+    public Account getAccountById(String id) {
+        Account account = new Account();
+        account = accountMapper.getAccountById(id);
+        return account;
+    }
+
+    @Override
+    public Account getAccountInfo(Map<String, Object> condition) {
+        return accountMapper.getAccountInfo(condition);
+    }
+
+    @Override
     public int createAccount(Account account) {
         return accountMapper.insert(account);
+    }
+
+    @Override
+    public String getToken(Account account, long time) {
+        Date start = new Date();
+        long currentTime = System.currentTimeMillis() + time;//一小时有效时间
+        Date end = new Date(currentTime);
+        String token = "";
+        token = JWT.create().withAudience(account.getIdNumber()).withIssuedAt(start).withExpiresAt(end)
+                // 储存id和level
+                .sign(Algorithm.HMAC256(account.getPassword())); // 储存password，用于解密
+        return token;
+    }
+
+    @Override
+    public void addAccount(Account account) {
+        accountMapper.add(account);
+    }
+
+    @Override
+    public boolean updatePasswd(Map<String, Object> map) {
+        return accountMapper.updatePasswd(map);
+    }
+
+    @Override
+    public boolean updatePhoneNumber(Map<String, Object> map) {
+        return accountMapper.updatePhoneNumber(map);
     }
 }
