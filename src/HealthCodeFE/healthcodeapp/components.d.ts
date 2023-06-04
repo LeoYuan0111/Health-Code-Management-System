@@ -9,6 +9,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AdcanvedForm: typeof import('./src/components/AdcanvedForm.vue')['default']
+    AdcanveForm: typeof import('./src/components/AdcanveForm.vue')['default']
+    AdvancedForm: typeof import('./src/components/AdvancedForm.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -31,9 +34,11 @@ declare module '@vue/runtime-core' {
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
+    IconManager: typeof import('./src/components/icons/IconManager.vue')['default']
     IconProfile: typeof import('./src/components/icons/IconProfile.vue')['default']
     IconQrCode: typeof import('./src/components/icons/IconQrCode.vue')['default']
     IconQuery: typeof import('./src/components/icons/IconQuery.vue')['default']
+    IconRecord: typeof import('./src/components/icons/IconRecord.vue')['default']
     IconReturn: typeof import('./src/components/icons/IconReturn.vue')['default']
     IconRing: typeof import('./src/components/icons/IconRing.vue')['default']
     IconSamperVaccinum: typeof import('./src/components/icons/IconSamperVaccinum.vue')['default']
@@ -43,6 +48,7 @@ declare module '@vue/runtime-core' {
     IconSiteCode: typeof import('./src/components/icons/IconSiteCode.vue')['default']
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
+    IconTube: typeof import('./src/components/icons/IconTube.vue')['default']
     LoginForm: typeof import('./src/components/LoginForm.vue')['default']
     RegisterForm: typeof import('./src/components/RegisterForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import LoginForm from '../components/LoginForm.vue'
 import RegisterForm from '@/components/RegisterForm.vue';
+import AdvancedForm from '@/components/AdvancedForm.vue';
 import HomePic from '@/components/HomePic.vue';
 import IconBubble from '@/components/icons/IconBubble.vue'
 
@@ -35,6 +36,9 @@ const advanced_drawer = ref(false)
   </el-drawer>
   <el-drawer v-model="register_drawer" direction="btt" size="80%" :show-close="false" :with-header="false">
     <RegisterForm />
+  </el-drawer>
+  <el-drawer v-model="advanced_drawer" direction="btt" size="80%" :show-close="false" :with-header="false">
+    <AdvancedForm />
   </el-drawer>
 </template>
 

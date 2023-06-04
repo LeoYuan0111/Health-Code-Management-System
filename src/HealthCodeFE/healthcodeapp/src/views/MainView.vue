@@ -194,7 +194,7 @@ onMounted(() => {
 .result-row {
 	width: 100%;
 	height: 20vh;
-	margin-top: 2rem;
+	margin-top: 1rem;
 	align-self: end;
 }
 

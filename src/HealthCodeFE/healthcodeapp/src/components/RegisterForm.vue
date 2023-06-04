@@ -23,13 +23,13 @@ const onSubmit = () => {
 			<el-input v-model="form.id" placeholder="身份证号" class="input"></el-input>
 		</el-form-item>
 		<el-form-item>
-			<el-input v-model="form.phone" placeholder="密码" class="input"></el-input>
+			<el-input v-model="form.phone" placeholder="电话" class="input"></el-input>
 		</el-form-item>
 		<el-form-item>
-			<el-input v-model="form.passwd" placeholder="密码" class="input"></el-input>
+			<el-input v-model="form.passwd" type="password" show-password placeholder="密码" class="input"></el-input>
 		</el-form-item>
 		<el-form-item>
-			<el-input v-model="form.repeat_passwd" placeholder="确认密码" class="input"></el-input>
+			<el-input v-model="form.repeat_passwd" type="password" show-password placeholder="确认密码" class="input"></el-input>
 		</el-form-item>
 		<el-form-item>
 			<el-button type="primary" class="submit" @click="onSubmit">提交</el-button>
