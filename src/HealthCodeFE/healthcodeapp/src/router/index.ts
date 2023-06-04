@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import SamplerMainView from '../views/SamplerMainView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -22,6 +22,22 @@ const router = createRouter({
       name: 'main',
       component: () => import('../views/MainView.vue')
     },
+    {
+      path: '/sampler_main' ,
+      name: 'sampler_main' ,
+      component: () => import('../views/SamplerMainView.vue')
+    },
+    {
+      path:'/sampler_nucleic_acid',
+      name : 'sampler_nucleic_acid',
+      component: () => import('../views/SamplerNucleicAcidView.vue')
+    },
+    {
+      path:'/sampler_vaccination',
+      name : 'sampler_vaccination',
+      component: () => import('../views/SamplerVaccination.vue')
+    }
+
   ]
 })
 
