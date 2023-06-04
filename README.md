@@ -3,6 +3,13 @@
 
 ### Frontend
 
+`/HealthCodeFE` path contains the code of backend.
+
+- environment:
+  - Node.js latest
+  - Npm latest
+
+Use `nvm` to install latest Node.js.
 
 
 ### Backend
