@@ -22,7 +22,7 @@ CREATE TABLE `account`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `account` VALUES ('333333333333333333', 'password', '17000000000', 0, 0, 0);
+INSERT INTO `account` VALUES ('333333333333333333', 'password', '17000000000', 1, 0, 0);
 
 -- ----------------------------
 -- Table structure for person

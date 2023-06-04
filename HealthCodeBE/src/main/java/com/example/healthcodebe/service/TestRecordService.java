@@ -3,6 +3,8 @@ package com.example.healthcodebe.service;
 import com.example.healthcodebe.entity.TestRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TestRecordService extends IService<TestRecord> {
 
+    boolean addSampleInfo(TestRecord testRecord);
+
+    TestRecord getByTubeId(String tube_id);
+
+    boolean updateDetectResult(TestRecord testRecord);
 }

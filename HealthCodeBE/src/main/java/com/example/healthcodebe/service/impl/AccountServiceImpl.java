@@ -79,4 +79,19 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     public boolean updatePhoneNumber(Map<String, Object> map) {
         return accountMapper.updatePhoneNumber(map);
     }
+
+    @Override
+    public boolean updateAdmin(Map<String, Object> condition) {
+        return accountMapper.updateAdmin(condition);
+    }
+
+    @Override
+    public boolean updateTester(Map<String, Object> map) {
+        return accountMapper.updateTester(map);
+    }
+
+    @Override
+    public boolean updateSampler(Map<String, Object> map) {
+        return accountMapper.updateSampler(map);
+    }
 }

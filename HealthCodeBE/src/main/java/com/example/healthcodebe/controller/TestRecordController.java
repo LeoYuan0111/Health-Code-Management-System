@@ -1,7 +1,19 @@
 package com.example.healthcodebe.controller;
 
+import com.auth0.jwt.JWT;
+import com.example.healthcodebe.entity.Account;
+import com.example.healthcodebe.entity.TestRecord;
+import com.example.healthcodebe.service.AccountService;
+import com.example.healthcodebe.service.TestRecordService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -12,7 +24,51 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2023-05-22 00:37:31
  */
 @RestController
-@RequestMapping("/test-record")
+@RequestMapping("/")
 public class TestRecordController {
+    @Autowired
+    private TestRecordService testRecordService;
+
+    @Autowired
+    private AccountService accountService;
+
+    @RequestMapping("/sampled_info")
+    public boolean sampleInfo (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if (!account.getSampler()) {
+            return false;
+        }
+        TestRecord testRecord = new TestRecord();
+        testRecord.setIdNumber(condition.get("user_id").toString());
+        testRecord.setTubeId(Integer.decode(condition.get("tube_id").toString()));
+//        System.out.println("************************************************************************************************************************************************************");
+//        System.out.println(testRecord.getTubeId());
+//        System.out.println(Integer.decode(condition.get("tube_id").toString()));
+        testRecord.setDate(LocalDateTime.now());
+        testRecord.setResult(0);
+        testRecord.setSamplerIdNumber(id_number);
+        testRecord.setTesterIdNumber("unknown");
+        return testRecordService.addSampleInfo(testRecord);
+    }
+
+    @RequestMapping("/detect_result")
+    public boolean detectResult (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if (!account.getTester()) {
+            return false;
+        }
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("tube_id", Integer.decode(condition.get("tube_id").toString()));
+//        map.put("date", LocalDateTime.now());
+//        map.put("result", Integer.decode(condition.get("rna_result").toString()));
+//        map.put("tester_id_number", id_number);
+        TestRecord testRecord = testRecordService.getByTubeId(condition.get("tube_id").toString());
+        testRecord.setDate(LocalDateTime.now());
+        testRecord.setResult(Integer.decode(condition.get("rna_result").toString()));
+        testRecord.setTesterIdNumber(id_number);
+        return testRecordService.updateDetectResult(testRecord);
+    }
 
 }

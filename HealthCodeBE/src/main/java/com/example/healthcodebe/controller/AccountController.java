@@ -32,7 +32,7 @@ public class AccountController {
 
     @RequestMapping("/login")
     @PassToken
-    public Account getAccountInfo (@RequestParam Map<String, Object> condition) {
+    public Account login (@RequestParam Map<String, Object> condition) {
         Map<String, Object> map = new HashMap<>();
         map.put("id_number", condition.get("user_id").toString());
         map.put("password", condition.get("passwd").toString());
@@ -68,11 +68,57 @@ public class AccountController {
     }
 
     @RequestMapping("/edit_phone")
-    public boolean updatePhone(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
+    public boolean updatePhone (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
         String id_number = JWT.decode(token).getAudience().get(0);
         Map<String, Object> map = new HashMap<>();
         map.put("id_number", id_number);
         map.put("phone_number", condition.get("phone").toString());
         return accountService.updatePhoneNumber(map);
+    }
+
+    @RequestMapping("/identify_info")
+    public Account getInfo (@RequestHeader("Authorization") String token) {
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        return account;
+    }
+
+    @RequestMapping("/authorize_admin")
+    public boolean authorizeAdmin (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if (!account.getAdmin()) {
+            return false;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("id_number", condition.get("user_id").toString());
+        map.put("admin", 1);
+        return accountService.updateAdmin(map);
+    }
+
+    @RequestMapping("/authorize_tester")
+    public boolean authorizeTester (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if (!account.getAdmin()) {
+            return false;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("id_number", condition.get("user_id").toString());
+        map.put("tester", 1);
+        return accountService.updateTester(map);
+    }
+
+    @RequestMapping("/authorize_sampler")
+    public boolean authorizeSampler (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if (!account.getAdmin()) {
+            return false;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("id_number", condition.get("user_id").toString());
+        map.put("sampler", 1);
+        return accountService.updateSampler(map);
     }
 }

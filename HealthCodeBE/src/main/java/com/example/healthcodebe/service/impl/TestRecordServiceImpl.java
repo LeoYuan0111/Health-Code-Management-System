@@ -4,7 +4,10 @@ import com.example.healthcodebe.entity.TestRecord;
 import com.example.healthcodebe.mapper.TestRecordMapper;
 import com.example.healthcodebe.service.TestRecordService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -16,5 +19,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TestRecordServiceImpl extends ServiceImpl<TestRecordMapper, TestRecord> implements TestRecordService {
+    @Resource
+    private TestRecordMapper testRecordMapper;
+    @Override
+    public boolean addSampleInfo(TestRecord testRecord) {
+        return testRecordMapper.addSampleInfo(testRecord);
+    }
 
+    @Override
+    public TestRecord getByTubeId(String tube_id) {
+        return testRecordMapper.getByTubeId(tube_id);
+    }
+
+    @Override
+    public boolean updateDetectResult(TestRecord testRecord) {
+        return testRecordMapper.updateDetectResult(testRecord);
+    }
 }

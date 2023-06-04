@@ -30,4 +30,10 @@ public interface AccountService extends IService<Account> {
     boolean updatePasswd(Map<String, Object> map);
 
     boolean updatePhoneNumber(Map<String, Object> map);
+
+    boolean updateAdmin(Map<String, Object> condition);
+
+    boolean updateTester(Map<String, Object> map);
+
+    boolean updateSampler(Map<String, Object> map);
 }

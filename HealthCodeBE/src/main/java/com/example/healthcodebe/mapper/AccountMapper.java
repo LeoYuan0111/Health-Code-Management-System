@@ -26,4 +26,10 @@ public interface AccountMapper extends BaseMapper<Account> {
     boolean updatePasswd(@Param("condition") Map<String, Object> condition);
 
     boolean updatePhoneNumber(@Param("condition") Map<String, Object> condition);
+
+    boolean updateAdmin(@Param("condition") Map<String, Object> condition);
+
+    boolean updateTester(@Param("condition") Map<String, Object> condition);
+
+    boolean updateSampler(@Param("condition") Map<String, Object> condition);
 }

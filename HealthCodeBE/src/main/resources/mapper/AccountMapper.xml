@@ -83,4 +83,46 @@
         </where>
     </update>
 
+    <update id="updateAdmin" parameterType="map">
+        UPDATE account
+        <trim prefix="set" suffixOverrides=",">
+            <if test="condition.admin != null and condition.admin != ''">
+                admin = #{condition.admin},
+            </if>
+        </trim>
+        <where>
+            <if test="condition.id_number != null and condition.id_number != ''">
+                id_number = #{condition.id_number}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateTester" parameterType="map">
+        UPDATE account
+        <trim prefix="set" suffixOverrides=",">
+            <if test="condition.tester != null and condition.tester != ''">
+                tester = #{condition.tester},
+            </if>
+        </trim>
+        <where>
+            <if test="condition.id_number != null and condition.id_number != ''">
+                id_number = #{condition.id_number}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateSampler" parameterType="map">
+        UPDATE account
+        <trim prefix="set" suffixOverrides=",">
+            <if test="condition.sampler != null and condition.sampler != ''">
+                sampler = #{condition.sampler},
+            </if>
+        </trim>
+        <where>
+            <if test="condition.id_number != null and condition.id_number != ''">
+                id_number = #{condition.id_number}
+            </if>
+        </where>
+    </update>
+
 </mapper>
