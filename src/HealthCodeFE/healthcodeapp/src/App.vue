@@ -4,12 +4,10 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <!-- <header>
-
-    <div class="wrapper">
-    </div>
-  </header> -->
-
+  <div id="corner">
+    <div id="circle1"></div>
+    <div id="circle2"></div>
+  </div>
   <RouterView />
 </template>
 
@@ -74,5 +72,37 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+#corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  width: 20rem;
+  height: 20rem;
+}
+#circle1 {
+  position: absolute;
+  top: -4rem;
+  right: -4rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-color: #01A28C;
+  opacity: 0.6;
+  background-size: 20px 20px;
+  z-index: -1;
+}
+#circle2 {
+  position: absolute;
+  top: -5rem;
+  right: -4rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background-color: #01A28C;
+  opacity: 0.38;
+  background-size: 20px 20px;
+  z-index: -2;
 }
 </style>
