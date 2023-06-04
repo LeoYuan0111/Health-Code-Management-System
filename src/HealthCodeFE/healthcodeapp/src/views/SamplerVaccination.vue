@@ -7,7 +7,7 @@ import { reactive } from 'vue'
 const router = useRouter()
 
 const onReturn = () => {
-	router.push('/sampler_main')
+	router.push('/sampler')
 }
 
 const form = reactive({
@@ -31,7 +31,7 @@ const onSubmit = () => {
         <el-col :span="3" class="icon" @click="onReturn">
         <IconReturn />
         </el-col>
-        <el-col :span="19">
+        <el-col :span="21">
         <h1 class="title">采样者疫苗接种页面</h1>
         </el-col>
       </el-row>
@@ -64,6 +64,9 @@ const onSubmit = () => {
 
 
 <style scoped>
+.el-header{
+  margin-left:-28px;
+} 
 .name{
   padding-left: 0px;
   padding-bottom: 30px;
@@ -80,13 +83,13 @@ const onSubmit = () => {
 }
 .title {
   color: #01a28c;
-  font-size: 20px;
+  font-size: 28px;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: left;
   align-items: center;
-  height: 10vh;
+
 }
 
 .main {
@@ -94,7 +97,7 @@ const onSubmit = () => {
   justify-content: end;
   align-items: center;
   flex-direction: column;
-  height: auto;
+  height: 350px;
   background: #01A28C61;
   border-radius: 20px;
   padding:50px;
@@ -108,14 +111,6 @@ const onSubmit = () => {
   flex-direction: column;
   height: auto;
   padding:15px;
-}
-
-.main-button {
-  width: 90%;
-  height: 3rem;
-  margin: 1rem 0;
-  font-size: 1.2rem;
-  font-weight: bolder;
 }
 
 .icon {
@@ -144,6 +139,7 @@ const onSubmit = () => {
 	width: 100%;
 	height: 3rem;
 	margin: 0.5rem auto;
+  font-size: 18px;
 }
 
 </style>
