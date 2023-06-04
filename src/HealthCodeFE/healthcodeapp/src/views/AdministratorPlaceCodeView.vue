@@ -7,15 +7,15 @@ import { reactive } from 'vue'
 const router = useRouter()
 
 const onReturn = () => {
-	router.push('/sampler')
+	router.push('/administrator')
 }
 
 const form = reactive({
+  user_name : '',//加了一条用户姓名，后端可以核对防止管理员输入出错
   user_id : '',
-  vac_name : '',
-  vac_num : '',
-  vac_time : '',
-  address : ''
+  color : '',
+  reason : '',
+  time : ''
 })
 
 const onSubmit = () => {
@@ -36,8 +36,31 @@ const onSubmit = () => {
         </el-col>
       </el-row>
     </el-header>
+    
     <el-main class="main">
-      
+      <p>收回已申请场所码</p>
+    </el-main>
+    <el-footer>
+      <el-form :model="form" class="form">
+        <el-form-item label="用户姓名" class="formLabel">
+          <el-input v-model="form.user_name" class="input"></el-input>
+        </el-form-item> 
+        <el-form-item label="身份证号" class="formLabel">
+          <el-input v-model="form.user_id" class="input"></el-input>
+        </el-form-item>
+        <el-form-item label="转码颜色" class="formLabel">
+          <el-select v-model="form.color" class="input" :placeholder="''">
+            <el-option value="黄码" class="select_item">黄码</el-option>
+            <el-option value="红码" class="select_item">红码</el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="转码理由" class="formLabel">
+          <el-input v-model="form.reason" class="input" type="textarea" :rows="3"></el-input>
+        </el-form-item> 
+      </el-form>
+    </el-footer>
+    <el-main class="main">
+      <p>查看场所码</p>
     </el-main>
   
   </el-container>

@@ -14,7 +14,6 @@ declare module '@vue/runtime-core' {
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
-    ElFooer: typeof import('element-plus/es')['ElFooer']
     ElFooter: typeof import('element-plus/es')['ElFooter']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
@@ -38,7 +37,6 @@ declare module '@vue/runtime-core' {
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
     IconProfile: typeof import('./src/components/icons/IconProfile.vue')['default']
-    IconQrCode: typeof import('./src/components/icons/IconQrCode.vue')['default']
     IconQuery: typeof import('./src/components/icons/IconQuery.vue')['default']
     IconReturn: typeof import('./src/components/icons/IconReturn.vue')['default']
     IconRing: typeof import('./src/components/icons/IconRing.vue')['default']
@@ -53,7 +51,6 @@ declare module '@vue/runtime-core' {
     RegisterForm: typeof import('./src/components/RegisterForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SamperVaccinum: typeof import('./src/components/icons/SamperVaccinum.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }

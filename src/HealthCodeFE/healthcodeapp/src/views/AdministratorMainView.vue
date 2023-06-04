@@ -58,12 +58,12 @@ const onClickIcon6 = () => {
       <Icon2Administrator class="iconbig" @click="onClickIcon2"/>
     </el-main>
     <el-main class="main">
-      <Icon3Administrator class="iconbig" onclick="onClickIcon3"/>
-      <Icon4Administrator class="iconbig" onclick="onClickIcon4"/>
+      <Icon3Administrator class="iconbig" @click="onClickIcon3"/>
+      <Icon4Administrator class="iconbig" @click="onClickIcon4"/>
     </el-main>
     <el-main class="main">
-      <Icon5Administrator class="iconbig" onclick="onClickIcon5"/>
-      <Icon6Administrator class="iconbig" onclick="onClickIcon6"/>
+      <Icon5Administrator class="iconbig" @click="onClickIcon5"/>
+      <Icon6Administrator class="iconbig" @click="onClickIcon6"/>
     </el-main>
   </el-container>
 </template>
