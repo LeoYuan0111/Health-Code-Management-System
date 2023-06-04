@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import moment from 'moment'
 import IconQuery from '@/components/icons/IconQuery.vue'
 import IconRing from '@/components/icons/IconRing.vue'
@@ -7,6 +8,7 @@ import IconSiteCode from '@/components/icons/IconSiteCode.vue'
 import IconSite from '@/components/icons/IconSite.vue'
 import IconProfile from '@/components/icons/IconProfile.vue'
 
+let router = useRouter();
 
 let getTime = () => {
 	return moment().format('HH:mm:ss')
