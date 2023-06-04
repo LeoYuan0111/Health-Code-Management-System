@@ -22,19 +22,34 @@ const router = createRouter({
       component: () => import('../views/MainView.vue')
     },
     {
-      path: '/sampler_main' ,
-      name: 'sampler_main' ,
+      path: '/sampler' ,
+      name: 'sampler' ,
       component: () => import('../views/SamplerMainView.vue')
     },
     {
-      path:'/sampler_nucleic_acid',
+      path:'/sampler/nucleic_acid',
       name : 'sampler_nucleic_acid',
       component: () => import('../views/SamplerNucleicAcidView.vue')
     },
     {
-      path:'/sampler_vaccination',
+      path:'/sampler/vaccination',
       name : 'sampler_vaccination',
       component: () => import('../views/SamplerVaccination.vue')
+    },
+    {
+      path:'/administrator',
+      name:'administrator',
+      component: () => import('../views/AdministratorMainView.vue')
+    },
+    {
+      path:'/administrator/code_change',
+      name:'administrator_code_change',
+      component: () => import('../views/AdministratorCodeChangeView.vue')
+    },
+    {
+      path:'/administrator/place_code',
+      name:'administrator_place_code',
+      component: () => import('../views/AdministratorPlaceCodeView.vue')
     }
 
   ]
