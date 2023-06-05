@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,4 +24,6 @@ public interface TestRecordMapper extends BaseMapper<TestRecord> {
     TestRecord getByTubeId(String tube_id);
 
     boolean updateDetectResult(TestRecord testRecord);
+
+    List<TestRecord> getById(String id_number);
 }

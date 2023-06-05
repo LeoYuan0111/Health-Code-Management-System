@@ -54,4 +54,14 @@
         </where>
     </update>
 
+    <select id="getById" resultMap="BaseTestRecordMap" parameterType="string">
+        SELECT
+        *
+        FROM
+        test_record
+        <where>
+            id_number = #{id_number}
+        </where>
+    </select>
+
 </mapper>

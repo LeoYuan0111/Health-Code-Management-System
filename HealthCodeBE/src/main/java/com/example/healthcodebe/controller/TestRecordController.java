@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,9 +43,6 @@ public class TestRecordController {
         TestRecord testRecord = new TestRecord();
         testRecord.setIdNumber(condition.get("user_id").toString());
         testRecord.setTubeId(Integer.decode(condition.get("tube_id").toString()));
-//        System.out.println("************************************************************************************************************************************************************");
-//        System.out.println(testRecord.getTubeId());
-//        System.out.println(Integer.decode(condition.get("tube_id").toString()));
         testRecord.setDate(LocalDateTime.now());
         testRecord.setResult(0);
         testRecord.setSamplerIdNumber(id_number);
@@ -53,7 +51,7 @@ public class TestRecordController {
     }
 
     @RequestMapping("/detect_result")
-    public boolean detectResult (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
+    public boolean updateDetectResult (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
         String id_number = JWT.decode(token).getAudience().get(0);
         Account account = accountService.getAccountById(id_number);
         if (!account.getTester()) {
@@ -71,4 +69,9 @@ public class TestRecordController {
         return testRecordService.updateDetectResult(testRecord);
     }
 
+    @RequestMapping("/rna_detect_result")
+    public List<TestRecord> getDetectResults (@RequestHeader("Authorization") String token) {
+        String id_number = JWT.decode(token).getAudience().get(0);
+        return testRecordService.getDetectResults(id_number);
+    }
 }

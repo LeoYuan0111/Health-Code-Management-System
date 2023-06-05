@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,5 +35,10 @@ public class TestRecordServiceImpl extends ServiceImpl<TestRecordMapper, TestRec
     @Override
     public boolean updateDetectResult(TestRecord testRecord) {
         return testRecordMapper.updateDetectResult(testRecord);
+    }
+
+    @Override
+    public List<TestRecord> getDetectResults(String id_number) {
+        return testRecordMapper.getById(id_number);
     }
 }
