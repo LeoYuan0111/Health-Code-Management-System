@@ -60,9 +60,6 @@ const onSubmit = () => {
 
 
 <style scoped>
-.el-header{
-  margin-left:-28px;
-} 
 .text {
   color:black;
   font-size:16px;
@@ -74,7 +71,7 @@ const onSubmit = () => {
 }
 .title {
   color: #01a28c;
-  font-size: 28px;
+  font-size: 1.5rem;
   margin: 0;
   padding: 0;
   display: flex;

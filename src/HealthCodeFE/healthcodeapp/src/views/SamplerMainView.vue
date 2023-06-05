@@ -8,14 +8,14 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const onReturn = () => {
-	router.push('/')
+  router.push('/')
 }
 
 const onClickNucleicAid = () => {
   router.push('/sampler/nucleic_acid')
 }
 
-const onClickVaccination  = () => {
+const onClickVaccination = () => {
   router.push('/sampler/vaccination')
 }
 
@@ -27,32 +27,45 @@ const onClickVaccination  = () => {
     <el-header style="text-align: left">
       <el-row>
         <el-col :span="3" class="icon" @click="onReturn">
-        <IconReturn />
+          <IconReturn />
         </el-col>
         <el-col :span="19">
-        <h1 class="title">采样者页面</h1>
+          <h1 class="title">采样者页面</h1>
         </el-col>
       </el-row>
     </el-header>
     <el-main class="main">
-      <IconSamplerNucleicAcid class="iconbig"/>
-      <el-button type="primary" class="main-button" @click="onClickNucleicAid">核酸检测</el-button>
-    </el-main>
-    <el-main class="main">
-      <SamperVaccinum class="iconbig"/>
-      <el-button type="primary" class="main-button" @click="onClickVaccination">疫苗接种</el-button>
+      <el-row class="icon-row">
+        <el-icon :size="150">
+          <IconSamplerNucleicAcid />
+        </el-icon>
+      </el-row>
+      <el-row class="button-row">
+        <el-button type="primary" class="main-button" @click="onClickNucleicAid">
+          核酸检测
+        </el-button>
+
+      </el-row>
+      <el-row class="icon-row">
+        <el-icon :size="150">
+          <SamperVaccinum />
+        </el-icon>
+      </el-row>
+      <el-row class="button-row">
+        <el-button type="primary" class="main-button" @click="onClickVaccination">
+          疫苗接种
+        </el-button>
+
+      </el-row>
     </el-main>
   </el-container>
 </template>
 
 
 <style scoped>
-.el-header{
-  margin-left:-28px;
-} 
 .title {
   color: #01a28c;
-  font-size: 28px;
+  font-size: 1.5rem;
   margin: 0;
   padding: 0;
   display: flex;
@@ -63,10 +76,10 @@ const onClickVaccination  = () => {
 
 .main {
   display: flex;
-  justify-content: end;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
-  height: 320px;
+  /* height: 320px; */
 }
 
 .main-button {
@@ -77,26 +90,38 @@ const onClickVaccination  = () => {
   font-weight: bolder;
 }
 
+.button-row {
+  width: 100%;
+  justify-content: center;
+}
+.icon-row {
+  width: 100%;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
 .icon {
   display: flex;
   justify-content: left;
   align-items: center;
   width: 80%;
 }
+
 .iconbig {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 35%;
 }
+
 .el-row {
-  display: flex; 
+  display: flex;
   flex-wrap: wrap;
 }
-.el-header{
+
+.el-header {
   padding: 0;
   margin: 0;
 }
-
 </style>
 
