@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthcodebe.mapper.ComplainMapper">
+    <resultMap id="BaseComplainMap" type="com.example.healthcodebe.entity.Complain">
+        <result column="complain_id" property="complainId" jdbcType="VARCHAR" />
+        <result column="time" property="time" jdbcType="TIMESTAMP" />
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="result" property="result" jdbcType="INTEGER" />
+        <result column="reply" property="reply" jdbcType="VARCHAR" />
+        <result column="withdraw" property="withdraw" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="getComplainById" resultMap="BaseComplainMap" parameterType="String">
+        SELECT
+        *
+        FROM
+        complain
+        <where>
+            id_number = #{id}
+        </where>
+    </select>
+
+    <select id="getComplainByComplainId" resultMap="BaseComplainMap" parameterType="String">
+        SELECT
+        *
+        FROM
+        complain
+        <where>
+            complain_id = #{complain_id}
+        </where>
+    </select>
+
+    <update id="withDraw" parameterType="String">
+        UPDATE complain
+        <trim prefix="set" suffixOverrides=",">
+            <if test="withdraw != null">
+                withdraw = 1,
+            </if>
+        </trim>
+        <where>
+            <if test="complainId != null and complainId != ''">
+                complain_id = #{complain_id}
+            </if>
+        </where>
+    </update>
+
+
+    <insert id="addComplain" useGeneratedKeys="true" keyProperty="complainId" parameterType="com.example.healthcodebe.entity.Complain">
+        INSERT INTO complain
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="time != null">time,</if>
+            <if test="idNumber != null and idNumber != ''">id_number,</if>
+            <if test="content != null">content,</if>
+            <if test="result != null">result,</if>
+            <if test="reply != null">reply,</if>
+            <if test="withdraw != null">withdraw,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="time != null">#{time},</if>
+            <if test="idNumber != null and idNumber != ''">#{idNumber},</if>
+            <if test="content != null">#{content},</if>
+            <if test="result != null">#{result},</if>
+            <if test="reply != null">#{reply},</if>
+            <if test="withdraw != null">#{withdraw},</if>
+        </trim>
+    </insert>
+</mapper>
