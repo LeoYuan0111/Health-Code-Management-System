@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author hyc
@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("vaccination_record")
 @ApiModel(value = "VaccinationRecord对象", description = "")
-public class VaccinationRecord {
+public class VaccinationInfo {
 
     @TableField("id_number")
     private String idNumber;
@@ -33,9 +33,17 @@ public class VaccinationRecord {
     private Integer vaccId;
 
     @TableField("`date`")
-    private LocalDateTime injectDate;
+    private LocalDateTime date;
 
     @TableField("doc_id_number")
     private String docIdNumber;
 
+    @TableField("`date`")
+    private LocalDateTime injectDate;
+
+    @TableField("provider")
+    private String provider;
+
+    @TableField("expiration_date")
+    private LocalDateTime expirationDate;
 }

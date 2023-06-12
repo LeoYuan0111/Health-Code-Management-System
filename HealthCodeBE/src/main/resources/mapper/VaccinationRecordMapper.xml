@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.healthcodebe.mapper.VaccinationRecordMapper">
+    <resultMap id="BaseVaccinationRecordMap" type="com.example.healthcodebe.entity.VaccinationRecord">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR"/>
+        <result column="vacc_id" property="vaccId" jdbcType="INTEGER"/>
+        <result column="inject_date" property="injectDate" jdbcType="TIMESTAMP"/>
+        <result column="doc_id_number" property="docIdNumber" jdbcType="VARCHAR"/>
+    </resultMap>
 
+    <resultMap id="BaseVaccinationInfoMap" type="com.example.healthcodebe.entity.VaccinationInfo">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR"/>
+        <result column="vacc_id" property="vaccId" jdbcType="INTEGER"/>
+        <result column="date" property="date" jdbcType="TIMESTAMP"/>
+        <result column="doc_id_number" property="docIdNumber" jdbcType="VARCHAR"/>
+        <result column="provider" property="provider" jdbcType="VARCHAR"/>
+        <result column="inject_date" property="injectDate" jdbcType="TIMESTAMP"/>
+        <result column="expiration_date" property="expirationDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="addVaccinationInfo" parameterType="com.example.healthcodebe.entity.VaccinationRecord">
+        INSERT INTO vaccination_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null">id_number,</if>
+            <if test="vaccId != null">vacc_id,</if>
+            <if test="injectDate != null">inject_date,</if>
+            <if test="docIdNumber != null">doc_id_number,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null">#{idNumber},</if>
+            <if test="vaccId != null">#{vaccId},</if>
+            <if test="injectDate != null">#{injectDate},</if>
+            <if test="docIdNumber != null">#{docIdNumber},</if>
+        </trim>
+    </insert>
+
+    <select id="getVaccinationInfoById" resultMap="BaseVaccinationInfoMap" parameterType="String">
+        SELECT
+        *
+        FROM
+        vaccine NATURAL JOIN vaccination_record
+        <where>
+            id_number = #{id}
+        </where>
+        ORDER BY inject_date DESC
+    </select>
 </mapper>

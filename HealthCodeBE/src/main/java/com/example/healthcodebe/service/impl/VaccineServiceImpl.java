@@ -4,6 +4,7 @@ import com.example.healthcodebe.entity.Vaccine;
 import com.example.healthcodebe.mapper.VaccineMapper;
 import com.example.healthcodebe.service.VaccineService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class VaccineServiceImpl extends ServiceImpl<VaccineMapper, Vaccine> implements VaccineService {
-
+    @Resource
+    private VaccineMapper vaccineMapper;
+    @Override
+    public boolean addVaccine(Vaccine vaccine){
+        vaccineMapper.addVaccine(vaccine);
+        return true;
+    }
 }

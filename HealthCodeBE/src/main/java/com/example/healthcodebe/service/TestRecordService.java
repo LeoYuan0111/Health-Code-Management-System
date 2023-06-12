@@ -23,4 +23,5 @@ public interface TestRecordService extends IService<TestRecord> {
     boolean updateDetectResult(TestRecord testRecord);
 
     List<TestRecord> getDetectResults(String id_number);
+
 }

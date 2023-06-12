@@ -19,6 +19,7 @@
         <where>
             id_number = #{id}
         </where>
+        ORDER BY time DESC
     </select>
 
     <select id="getComplainByComplainId" resultMap="BaseComplainMap" parameterType="String">

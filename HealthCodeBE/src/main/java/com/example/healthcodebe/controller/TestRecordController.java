@@ -45,6 +45,7 @@ public class TestRecordController {
         testRecord.setTubeId(Integer.decode(condition.get("tube_id").toString()));
         testRecord.setDate(LocalDateTime.now());
         testRecord.setResult(0);
+        // 0 - 未出 1 - 阴 2 - 阳
         testRecord.setSamplerIdNumber(id_number);
         testRecord.setTesterIdNumber("unknown");
         return testRecordService.addSampleInfo(testRecord);
@@ -62,10 +63,13 @@ public class TestRecordController {
 //        map.put("date", LocalDateTime.now());
 //        map.put("result", Integer.decode(condition.get("rna_result").toString()));
 //        map.put("tester_id_number", id_number);
+        // 录入结果
         TestRecord testRecord = testRecordService.getByTubeId(condition.get("tube_id").toString());
         testRecord.setDate(LocalDateTime.now());
         testRecord.setResult(Integer.decode(condition.get("rna_result").toString()));
         testRecord.setTesterIdNumber(id_number);
+        // 改码的颜色
+
         return testRecordService.updateDetectResult(testRecord);
     }
 

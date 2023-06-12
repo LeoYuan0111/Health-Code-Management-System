@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `vaccination_record`;
 CREATE TABLE `vaccination_record`  (
                                        `id_number` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
                                        `vacc_id` int(12) NOT NULL,
-                                       `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                       `inject_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                        `doc_id_number` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
                                        PRIMARY KEY (`vacc_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -57,7 +57,7 @@ CREATE TABLE `vaccination_record`  (
 -- ----------------------------
 -- Records of vaccination record
 -- ----------------------------
-INSERT INTO `vaccination_record` (id_number, vacc_id, date, doc_id_number) VALUES ('333333333333333333', 0, NOW(), '555555555555555555');
+INSERT INTO `vaccination_record` (id_number, vacc_id, inject_date, doc_id_number) VALUES ('333333333333333333', 0, NOW(), '555555555555555555');
 
 -- ----------------------------
 -- Table structure for test record
