@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.example.healthcodebe.entity.Account;
 import com.example.healthcodebe.entity.Complain;
 import com.example.healthcodebe.entity.HealthCode;
+import com.example.healthcodebe.service.AccountService;
 import com.example.healthcodebe.service.HealthCodeService;
 import com.example.healthcodebe.service.ComplainService;
 import com.example.healthcodebe.utils.QRCodeUtil;
@@ -35,6 +36,8 @@ public class HealthCodeController {
     private HealthCodeService healthCodeService;
     @Autowired
     private ComplainService complainService;
+    @Autowired
+    private AccountService accountService;
 
     @RequestMapping("/user/health_code")
     public void health_code(@RequestHeader("Authorization") String token, HttpServletResponse response) {
@@ -103,6 +106,38 @@ public class HealthCodeController {
             return false;
         }
         complainService.withDraw(complain_id);
+        return true;
+    }
+
+    @RequestMapping("/admin/complain_info")
+    public @ResponseBody Object complain_info(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if(account.getAdmin() == false){
+            return null;
+        }
+        String complain_id = condition.get("complain_id").toString();
+        return complainService.getComplainByComplainId(complain_id);
+    }
+
+    @RequestMapping("/admin/complain_list")
+    public @ResponseBody Object complain_list(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if(account.getAdmin() == false){
+            return null;
+        }
+        return complainService.getComplainListByPage(condition);
+    }
+
+    @RequestMapping("/admin/deal_complain")
+    public boolean deal_complain(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if(account.getAdmin() == false){
+            return false;
+        }
+        complainService.dealComplain(condition);
         return true;
     }
 

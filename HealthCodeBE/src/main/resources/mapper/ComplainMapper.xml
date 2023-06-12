@@ -11,6 +11,7 @@
         <result column="withdraw" property="withdraw" jdbcType="INTEGER" />
     </resultMap>
 
+<!--    展示一个用户的所有申诉-->
     <select id="getComplainById" resultMap="BaseComplainMap" parameterType="String">
         SELECT
         *
@@ -22,6 +23,7 @@
         ORDER BY time DESC
     </select>
 
+<!--    展示一个特定的申诉-->
     <select id="getComplainByComplainId" resultMap="BaseComplainMap" parameterType="String">
         SELECT
         *
@@ -31,6 +33,39 @@
             complain_id = #{complain_id}
         </where>
     </select>
+
+<!--    按page展示申诉列表-->
+    <select id="getComplainListByPage" resultMap="BaseComplainMap" parameterType="map">
+        SELECT
+        *
+        FROM
+        complain
+        <where>
+            result = #{condition.result}
+        </where>
+        ORDER BY time DESC
+        LIMIT #{condition.page_size}
+        OFFSET #{condition.offset}
+    </select>
+
+<!--    处理申诉-->
+    <update id="dealComplain" parameterType="map">
+        UPDATE complain
+        <trim prefix="set" suffixOverrides=",">
+            <if test="condition.reply != null">
+                reply = #{condition.reply},
+            </if>
+            <if test="condition.result != null">
+                result = #{condition.result},
+            </if>
+        </trim>
+        <where>
+            <if test="condition.complain_id != null">
+                complain_id = #{condition.complain_id}
+            </if>
+        </where>
+    </update>
+
 
     <update id="withDraw" parameterType="String">
         UPDATE complain

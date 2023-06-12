@@ -13,4 +13,7 @@ public interface ComplainMapper extends BaseMapper<Complain> {
     List<Complain> getComplainById(String id);
     void withDraw(String complain_id);
     Complain getComplainByComplainId(String complain_id);
+
+    List<Complain> getComplainListByPage(@Param("condition") Map<String, Object> condition);
+    void dealComplain(@Param("condition") Map<String, Object> condition);
 }
