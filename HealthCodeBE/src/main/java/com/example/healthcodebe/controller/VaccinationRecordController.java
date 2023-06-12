@@ -9,10 +9,7 @@ import com.example.healthcodebe.service.AccountService;
 import com.example.healthcodebe.service.VaccinationRecordService;
 import com.example.healthcodebe.service.VaccineService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,6 +39,17 @@ public class VaccinationRecordController {
     public List<VaccinationInfo> vaccine_plant_info(@RequestHeader("Authorization") String token){
         String id_number = JWT.decode(token).getAudience().get(0);
         return vaccinationRecordService.getVaccinationInfoById(id_number);
+    }
+
+    @RequestMapping("/admin/vaccine_plant_info")
+    public @ResponseBody Object admin_vaccine_plant_info(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if(account.getAdmin() == false){
+            return false;
+        }
+        String target_id = condition.get("id_number").toString();
+        return vaccinationRecordService.getVaccinationInfoById(target_id);
     }
     @RequestMapping("/sampler/add_vaccine_info")
     public boolean add_vaccine_info(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){

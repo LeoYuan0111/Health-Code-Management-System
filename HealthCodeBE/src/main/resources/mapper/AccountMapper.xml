@@ -35,6 +35,16 @@
         </where>
     </select>
 
+    <select id="getAuthorityInfo" resultMap="BaseAccountMap" parameterType="map">
+        SELECT
+        *
+        FROM
+        account
+        <where>
+            admin = 1 OR sampler = 1 OR tester = 1
+        </where>
+    </select>
+
     <insert id="add" parameterType="com.example.healthcodebe.entity.Account">
         INSERT INTO account
         <trim prefix="(" suffix=")" suffixOverrides=",">

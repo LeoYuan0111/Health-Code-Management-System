@@ -8,6 +8,7 @@ import com.example.healthcodebe.mapper.HealthCodeMapper;
 import com.example.healthcodebe.service.AccountService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -104,5 +105,12 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     @Override
     public boolean updateSampler(Map<String, Object> map) {
         return accountMapper.updateSampler(map);
+    }
+
+    @Override
+    public List<Account> getAuthorityInfo(){
+        Map<String, Object> condition = new HashMap<>();
+        condition.put("nothing", "");
+        return accountMapper.getAuthorityInfo(condition);
     }
 }

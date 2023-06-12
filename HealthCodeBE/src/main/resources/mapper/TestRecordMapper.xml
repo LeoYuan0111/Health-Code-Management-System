@@ -62,6 +62,7 @@
         <where>
             id_number = #{id_number}
         </where>
+        ORDER BY date DESC
     </select>
 
 </mapper>

@@ -29,6 +29,22 @@
         </where>
     </select>
 
+    <update id="healthCodeChangeById" parameterType="map">
+        UPDATE
+        health_code
+        <trim prefix="set" suffixOverrides=",">
+            <if test="condition.color != null">
+                color = #{condition.color},
+            </if>
+            <if test="condition.update_time != null">
+                update_time = #{condition.update_time},
+            </if>
+        </trim>
+        <where>
+            id_number = #{condition.id_number}
+        </where>
+    </update>
+
     <insert id="initHealthCodeWhenRegister" parameterType="com.example.healthcodebe.entity.HealthCode">
         INSERT INTO health_code
         <trim prefix="(" suffix=")" suffixOverrides=",">

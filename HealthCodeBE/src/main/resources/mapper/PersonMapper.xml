@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.healthcodebe.mapper.PersonMapper">
+    <resultMap id="BasePersonMap" type="com.example.healthcodebe.entity.Person">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+        <result column="real_name" property="realName" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="INTEGER" />
+        <result column="addr" property="addr" jdbcType="VARCHAR" />
+    </resultMap>
 
+    <insert id="addPerson" parameterType="com.example.healthcodebe.entity.Person">
+        INSERT INTO person
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null and idNumber != ''">id_number,</if>
+            real_name,
+            phone,
+            age,
+            addr,
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null and idNumber != ''">#{idNumber},</if>
+            #{realName},
+            #{phone},
+            #{age},
+            #{addr},
+        </trim>
+    </insert>
+
+    <update id="updatePerson" parameterType="map">
+        UPDATE person
+        <trim prefix="set" suffixOverrides=",">
+            <if test="condition.real_name != null and condition.real_name != ''">
+                real_name = #{condition.real_name}
+            </if>
+            phone = #{condition.phone},
+            age = #{condition.age},
+            addr = #{condition.addr},
+
+        </trim>
+        <where>
+            <if test="condition.id_number != null and condition.id_number != ''">
+                id_number = #{condition.id_number}
+            </if>
+        </where>
+    </update>
+
+    <select id="getPersonByColor" resultMap="BasePersonMap" parameterType="map">
+        SELECT
+        A.id_number, A.real_name, A.phone, A.age, A.addr
+        FROM
+        person A JOIN health_code B
+        ON
+        A.id_number = B.id_number
+        <where>
+            color = #{condition.color}
+        </where>
+        ORDER BY A.id_number ASC
+        LIMIT #{condition.page_size}
+        OFFSET #{condition.offset}
+    </select>
+
+    <select id="getPersonById" resultMap="BasePersonMap" parameterType="String">
+        SELECT
+        *
+        FROM
+        person
+        <where>
+            id_number = #{id}
+        </where>
+    </select>
 </mapper>

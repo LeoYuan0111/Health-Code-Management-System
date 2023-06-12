@@ -16,4 +16,6 @@ public interface ComplainMapper extends BaseMapper<Complain> {
 
     List<Complain> getComplainListByPage(@Param("condition") Map<String, Object> condition);
     void dealComplain(@Param("condition") Map<String, Object> condition);
+
+
 }

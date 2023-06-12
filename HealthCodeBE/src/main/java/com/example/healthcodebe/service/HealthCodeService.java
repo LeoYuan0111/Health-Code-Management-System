@@ -3,6 +3,9 @@ package com.example.healthcodebe.service;
 import com.example.healthcodebe.entity.Account;
 import com.example.healthcodebe.entity.HealthCode;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -14,4 +17,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface HealthCodeService extends IService<HealthCode> {
     HealthCode getHealthCodeById(String id);
+    void healthCodeChangeById(@Param("condition") Map<String, Object> condition);
 }

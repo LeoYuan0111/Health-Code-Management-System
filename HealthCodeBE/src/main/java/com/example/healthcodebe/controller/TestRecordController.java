@@ -6,10 +6,7 @@ import com.example.healthcodebe.entity.TestRecord;
 import com.example.healthcodebe.service.AccountService;
 import com.example.healthcodebe.service.TestRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -77,5 +74,15 @@ public class TestRecordController {
     public List<TestRecord> getDetectResults (@RequestHeader("Authorization") String token) {
         String id_number = JWT.decode(token).getAudience().get(0);
         return testRecordService.getDetectResults(id_number);
+    }
+    @RequestMapping("/admin/rna_detect_result")
+    public @ResponseBody Object admin_rna_detect_result(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if(account.getAdmin() == false){
+            return false;
+        }
+        String target_id = condition.get("id_number").toString();
+        return testRecordService.getDetectResults(target_id);
     }
 }

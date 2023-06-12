@@ -2,9 +2,11 @@ package com.example.healthcodebe.controller;
 
 import com.auth0.jwt.JWT;
 import com.example.healthcodebe.entity.Account;
+import com.example.healthcodebe.entity.ColorChange;
 import com.example.healthcodebe.entity.Complain;
 import com.example.healthcodebe.entity.HealthCode;
 import com.example.healthcodebe.service.AccountService;
+import com.example.healthcodebe.service.ColorChangeService;
 import com.example.healthcodebe.service.HealthCodeService;
 import com.example.healthcodebe.service.ComplainService;
 import com.example.healthcodebe.utils.QRCodeUtil;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 /**
  * <p>
@@ -38,6 +41,9 @@ public class HealthCodeController {
     private ComplainService complainService;
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private ColorChangeService colorChangeService;
 
     @RequestMapping("/user/health_code")
     public void health_code(@RequestHeader("Authorization") String token, HttpServletResponse response) {
@@ -140,6 +146,41 @@ public class HealthCodeController {
         complainService.dealComplain(condition);
         return true;
     }
+
+    @RequestMapping("/admin/health_code_change")
+    public boolean health_code_change(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if(account.getAdmin() == false){
+            return false;
+        }
+        healthCodeService.healthCodeChangeById(condition);
+        ColorChange colorChange = new ColorChange();
+        colorChange.setReason(condition.get("reason").toString());
+        colorChange.setTocolor(Integer.valueOf(condition.get("tocolor").toString()));
+        colorChange.setTime(LocalDateTime.now());
+        colorChange.setIdNumber(condition.get("id_number").toString());
+        colorChangeService.addColorChange(colorChange);
+        return true;
+    }
+
+    @RequestMapping("/admin/health_code_info")
+    public @ResponseBody Object health_code_info(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if(account.getAdmin() == false){
+            return false;
+        }
+        String target_id = condition.get("id_number").toString();
+        HealthCode healthCode = healthCodeService.getHealthCodeById(target_id);
+        List<ColorChange> colorChanges = colorChangeService.getColorChangeById(target_id);
+        Map<String, Object> map = new HashMap<>();
+        map.put("HealthCode", healthCode);
+        map.put("ColorChange", colorChanges);
+        return map;
+    }
+
+
 
 
 

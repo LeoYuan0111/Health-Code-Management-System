@@ -23,7 +23,10 @@ CREATE TABLE `account`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `account` VALUES ('333333333333333333', 'password', '17000000000', 1, 0, 0);
-
+INSERT INTO `account` VALUES ('333333333333333360', 'password', '17000000000', 1, 0, 0);
+INSERT INTO `account` VALUES ('333333333333333361', 'password', '17000000000', 0, 1, 0);
+INSERT INTO `account` VALUES ('333333333333333362', 'password', '17000000000', 0, 0, 1);
+INSERT INTO `account` VALUES ('333333333333333363', 'password', '17000000000', 1, 1, 1);
 -- ----------------------------
 -- Table structure for person
 -- ----------------------------
@@ -31,7 +34,7 @@ DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person`  (
                            `id_number` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
                            `real_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-                           `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+                           `phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
                            `age` integer NOT NULL DEFAULT 0,
                            `addr` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
                            PRIMARY KEY (`id_number`) USING BTREE
@@ -40,7 +43,12 @@ CREATE TABLE `person`  (
 -- ----------------------------
 -- Records of person
 -- ----------------------------
-INSERT INTO `person` VALUES ('333333333333333333', 'Jack', 'jack@gmail.com', 20, 'Hangzhou');
+-- INSERT INTO `person` VALUES ('333333333333333333', 'Jack', '17000000001', 20, 'Hangzhou');
+INSERT INTO `person` VALUES ('333333333333333333', 'Jack', '17000000000', 20, 'Hangzhou');
+INSERT INTO `person` VALUES ('333333333333333360', 'Neil', '17000000000', 19, 'Hangzhou');
+INSERT INTO `person` VALUES ('333333333333333361', 'Hello', '17000000000', 43, 'Hangzhou');
+INSERT INTO `person` VALUES ('333333333333333362', 'Bye', '17000000000', 24, 'Hangzhou');
+INSERT INTO `person` VALUES ('333333333333333363', 'Miles&Gwen', '17000000000', 15, 'Hangzhou');
 
 -- ----------------------------
 -- Table structure for vaccination record
@@ -136,6 +144,8 @@ DROP TABLE IF EXISTS `place_code`;
 CREATE TABLE `place_code`  (
                                `place_id` int(12) NOT NULL AUTO_INCREMENT UNIQUE,
                                `phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                               `longitude` double NOT NULL,
+                               `latitude` double NOT NULL,
                                `province` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
                                `city` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
                                `county` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
@@ -147,7 +157,7 @@ CREATE TABLE `place_code`  (
 -- ----------------------------
 -- Records of place code
 -- ----------------------------
-INSERT INTO `place_code` (province, city, county, village, detail_addr) VALUES ('Zhejiang', 'Hangzhou', 'Xihu', 'Sandun', 'asdf');
+INSERT INTO `place_code` (longitude, latitude, province, city, county, village, detail_addr) VALUES (100.0, 100.0, 'Zhejiang', 'Hangzhou', 'Xihu', 'Sandun', 'asdf');
 
 -- ----------------------------
 -- Table structure for place visit
@@ -170,20 +180,15 @@ INSERT INTO `place_visit` (id_number, place_id, visit_time) VALUES ('33333333333
 -- ----------------------------
 DROP TABLE IF EXISTS `test_position`;
 CREATE TABLE `test_position`  (
-                                  `tp_id` int(12) NOT NULL AUTO_INCREMENT UNIQUE,
-                                  `province` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-                                  `city` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-                                  `county` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-                                  `village` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-                                  `detail_addr` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+                                  `place_id` int(12) NOT NULL UNIQUE,
                                   `manager_id_number` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                                  PRIMARY KEY (`tp_id`) USING BTREE
+                                  PRIMARY KEY (`place_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of test position
 -- ----------------------------
-INSERT INTO `test_position` (province, city, county, village, detail_addr, manager_id_number) VALUES ('Zhejiang', 'Hangzhou', 'Xihu', 'Sandun', 'asdf', '333333333333333333');
+INSERT INTO `test_position` (place_id, manager_id_number) VALUES (1, '333333333333333333');
 
 -- ----------------------------
 -- Table structure for test time
@@ -199,7 +204,7 @@ CREATE TABLE `test_time`  (
 -- ----------------------------
 -- Records of test time
 -- ----------------------------
-INSERT INTO `test_time` (place_id, start_time, end_time) VALUES (0, NOW(), NOW());
+INSERT INTO `test_time` (place_id, start_time, end_time) VALUES (1, NOW(), NOW());
 
 -- ----------------------------
 -- Table structure for color change

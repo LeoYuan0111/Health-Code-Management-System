@@ -6,6 +6,7 @@ import com.example.healthcodebe.entity.HealthCode;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,4 +34,6 @@ public interface AccountMapper extends BaseMapper<Account> {
     boolean updateTester(@Param("condition") Map<String, Object> condition);
 
     boolean updateSampler(@Param("condition") Map<String, Object> condition);
+
+    List<Account> getAuthorityInfo(@Param("condition") Map<String, Object> condition);
 }

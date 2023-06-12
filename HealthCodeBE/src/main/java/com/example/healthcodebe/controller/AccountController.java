@@ -2,13 +2,16 @@ package com.example.healthcodebe.controller;
 
 import com.auth0.jwt.JWT;
 import com.example.healthcodebe.entity.Account;
+import com.example.healthcodebe.entity.Person;
 import com.example.healthcodebe.service.AccountService;
+import com.example.healthcodebe.service.PersonService;
 import com.example.healthcodebe.utils.PassToken;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,6 +27,8 @@ import java.util.Map;
 public class AccountController {
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private PersonService personService;
 
     @RequestMapping("/getAllAccounts.json")
     public @ResponseBody Object GetAllUsers(){
@@ -55,6 +60,15 @@ public class AccountController {
         account.setTester(Boolean.FALSE);
         if (accountService.getAccountById(account.getIdNumber()) != null) return false;
         accountService.addAccount(account);
+
+        Person person = new Person();
+        person.setAddr("China");
+        person.setAge(0);
+        person.setPhone(account.getPhoneNumber());
+        person.setRealName("");
+        person.setIdNumber(account.getIdNumber());
+        personService.addPerson(person);
+
         return accountService.getAccountById(account.getIdNumber()) != null;
     }
 
@@ -120,5 +134,15 @@ public class AccountController {
         map.put("id_number", condition.get("user_id").toString());
         map.put("sampler", 1);
         return accountService.updateSampler(map);
+    }
+
+    @RequestMapping("/admin/get_authority_info")
+    public @ResponseBody Object getAuthorityInfo(@RequestHeader("Authorization") String token){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        if (!account.getAdmin()) {
+            return false;
+        }
+        return accountService.getAuthorityInfo();
     }
 }
