@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.healthcodebe.mapper.PlaceVisitMapper">
+    <resultMap id="BasePlaceVisitMap" type="com.example.healthcodebe.entity.PlaceVisit">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+        <result column="place_id" property="placeId" jdbcType="INTEGER" />
+        <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="BaseIdMap" type="com.example.healthcodebe.entity.Id">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="BasePlaceVisitInfoMap" type="com.example.healthcodebe.entity.PlaceVisitInfo">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+        <result column="place_id" property="placeId" jdbcType="INTEGER" />
+        <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
+        <result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getPlaceVisitInfoById" resultMap="BasePlaceVisitInfoMap" parameterType="String">
+        SELECT
+        id_number, place_visit.place_id, visit_time, detail_addr
+        FROM
+        place_visit NATURAL JOIN place_code
+        <where>
+            id_number = #{id}
+        </where>
+        ORDER BY visit_time DESC
+    </select>
+
+    <insert id="addPlaceVisit" parameterType="com.example.healthcodebe.entity.PlaceVisit">
+        INSERT INTO place_visit
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null">id_number,</if>
+            <if test="placeId != null">place_id,</if>
+            <if test="visitTime != null">visit_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null">#{idNumber},</if>
+            <if test="placeId != null">#{placeId},</if>
+            <if test="visitTime != null">#{visitTime},</if>
+        </trim>
+    </insert>
+
+    <select id="getCloseContactById" resultMap="BaseIdMap" parameterType="String">
+        select B.id_number from
+        place_visit AS A, place_visit AS B
+        <where>
+            A.id_number = #{id} AND
+            A.place_id = B.place_id AND
+            A.id_number != B.id_number AND
+            B.visit_time > date_sub(A.visit_time, interval 2 hour) AND
+            B.visit_time > date_sub(NOW(), interval 7 day) AND
+            date_add(A.visit_time, interval 2 hour) > B.visit_time
+        </where>
+    </select>
+
 
 </mapper>

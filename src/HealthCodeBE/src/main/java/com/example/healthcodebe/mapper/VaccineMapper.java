@@ -14,5 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface VaccineMapper extends BaseMapper<Vaccine> {
-
+    void addVaccine(Vaccine vaccine);
 }
