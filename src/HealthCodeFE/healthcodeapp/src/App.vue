@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { onMounted } from 'vue'
+
+import { useUserStore } from '@/stores/user'
+
+const user = useUserStore()
+
+// await user.checkLogin()
+onMounted(async () => {
+  await user.checkLogin()
+})
 // import HelloWorld from './components/HelloWorld.vue'
 </script>
 

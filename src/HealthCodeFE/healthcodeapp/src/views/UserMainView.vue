@@ -8,6 +8,10 @@ import IconSiteCode from '@/components/icons/IconSiteCode.vue'
 import IconSite from '@/components/icons/IconSite.vue'
 import IconProfile from '@/components/icons/IconProfile.vue'
 
+import { useUserStore } from '@/stores/user'
+
+let user = useUserStore()
+
 let router = useRouter();
 
 let getTime = () => {
@@ -38,8 +42,13 @@ onMounted(() => {
 			<el-divider class="divider" />
 		</el-header>
 		<el-main class="main">
-			<el-row class="name-row">
-				唐可可
+			<el-row class="name-row" justify="space-between">
+				<el-col :span="6" class="name">
+					{{ user.name }}
+				</el-col>
+				<el-col :span="18" class="id">
+					{{ user.id }}
+				</el-col>
 			</el-row>
 			<el-row class="qrcode" justify="center">
 				<el-col :span="20">
@@ -88,7 +97,7 @@ onMounted(() => {
 							</el-icon>
 						</el-row>
 						<el-row class="nav-text">
-							行程码查询
+							场所码扫描
 						</el-row>
 					</el-button>
 
@@ -118,7 +127,7 @@ onMounted(() => {
 					</el-button>
 				</el-col>
 				<el-col :span="4" class="nav-block">
-					<el-button type="primary" class="nav-button">
+					<el-button type="primary" class="nav-button" @click="router.push('/rna_site')">
 						<el-row class="nav-icon">
 							<el-icon :size="30">
 								<IconSite />
@@ -130,7 +139,7 @@ onMounted(() => {
 					</el-button>
 				</el-col>
 				<el-col :span="4" class="nav-block">
-					<el-button type="primary" class="nav-button">
+					<el-button type="primary" class="nav-button" @click="router.push('/user/info')">
 						<el-row class="nav-icon">
 							<el-icon :size="30">
 								<IconProfile />
@@ -171,8 +180,18 @@ onMounted(() => {
 
 .name-row {
 	width: 100%;
+	
+}
+.name {
 	font-size: 1.2rem;
 	font-weight: bolder;
+}
+.id {
+	font-size: 1.1rem;
+	font-weight: bolder;
+	align-items: center;
+	justify-content: right;
+	display: flex;
 }
 
 .qrcode {

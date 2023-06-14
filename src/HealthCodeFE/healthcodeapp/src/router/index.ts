@@ -22,6 +22,11 @@ const router = createRouter({
       component: () => import('../views/UserMainView.vue')
     },
     {
+      path: '/rna_site',
+      name: 'rna_site',
+      component: () => import('../views/RNASiteView.vue')
+    },
+    {
       path: '/user/rna_record',
       name: 'user_rna_record',
       component: () => import('../views/UserRNARecordView.vue')
@@ -30,6 +35,11 @@ const router = createRouter({
       path: '/user/vac_record',
       name: 'user_vac_record',
       component: () => import('../views/UserVacRecordView.vue')
+    },
+    {
+      path: '/user/info',
+      name: 'user_info',
+      component: () => import('../views/UserInfoView.vue')
     },
     {
       path: '/sampler' ,
