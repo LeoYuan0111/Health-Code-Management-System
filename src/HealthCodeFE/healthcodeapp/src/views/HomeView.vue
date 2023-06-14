@@ -16,10 +16,10 @@ const router = useRouter()
 const { checkLogin } = useUserStore()
 
 onMounted(async () => {
-  if(await checkLogin()) {
+  if (await checkLogin()) {
     router.push('/main')
   }
-  
+
 })
 
 </script>
@@ -37,10 +37,10 @@ onMounted(async () => {
       </el-row>
     </el-header>
     <el-main class="main">
-      <HomePic class="main-pic"/>
+      <HomePic class="main-pic" />
       <el-button type="primary" class="main-button" @click="login_drawer = true">登录</el-button>
       <el-button type="primary" class="main-button" @click="register_drawer = true">注册</el-button>
-      <el-button type="primary" class="main-button" @click="advanced_drawer = true">高级身份认证</el-button>
+      <!-- <el-button type="primary" class="main-button" @click="advanced_drawer = true">高级身份认证</el-button> -->
     </el-main>
   </el-container>
   <el-drawer v-model="login_drawer" title="登录" direction="btt" size="60%" :show-close="false" :with-header="false">
@@ -82,9 +82,11 @@ onMounted(async () => {
   font-size: 1.2rem;
   font-weight: bolder;
 }
+
 .main-pic {
   width: 90%;
   margin: 1rem 0;
+  margin-bottom: 10vh;
 }
 
 .icon {
@@ -93,5 +95,4 @@ onMounted(async () => {
   align-items: center;
   width: 80%;
 }
-
 </style>

@@ -4,7 +4,7 @@ import IconReturn from '@/components/icons/IconReturn.vue';
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user';
 import AMapLoader from '@amap/amap-jsapi-loader';
-import { fetchPostJSON } from '@/utils/post';
+import { fetchPostJSON } from '@/utils/fetch';
 import { getURL } from '@/utils/url';
 
 window._AMapSecurityConfig = {

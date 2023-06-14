@@ -1,7 +1,7 @@
 import { reactive, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { getURL } from '@/utils/url'
-import { fetchPostJSON } from '@/utils/post'
+import { fetchPostJSON } from '@/utils/fetch'
 import moment from 'moment'
 
 export interface RnaRecord {

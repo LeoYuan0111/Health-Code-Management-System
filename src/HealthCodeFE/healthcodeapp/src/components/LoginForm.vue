@@ -47,7 +47,7 @@ const onSubmit = (formEl: FormInstance | undefined) => {
 						type: 'success',
 						message: '登录成功',
 					})
-					// router.push('/main')
+					router.push('/main')
 				} else {
 					ElMessage({
 						type: 'error',

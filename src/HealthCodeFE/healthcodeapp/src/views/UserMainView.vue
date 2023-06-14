@@ -9,7 +9,7 @@ import IconSite from '@/components/icons/IconSite.vue'
 import IconProfile from '@/components/icons/IconProfile.vue'
 import { useUserStore } from '@/stores/user'
 import { useRnaRecordStore } from '@/stores/rna_record'
-import { fetchPostBlob } from '@/utils/post'
+import { fetchPostBlob } from '@/utils/fetch'
 import { getURL } from '@/utils/url'
 
 let user = useUserStore()
