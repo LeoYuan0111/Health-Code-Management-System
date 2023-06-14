@@ -1,10 +1,8 @@
 package com.example.healthcodebe.controller;
 
 import com.auth0.jwt.JWT;
-import com.example.healthcodebe.entity.Account;
-import com.example.healthcodebe.entity.TestRecord;
-import com.example.healthcodebe.service.AccountService;
-import com.example.healthcodebe.service.TestRecordService;
+import com.example.healthcodebe.entity.*;
+import com.example.healthcodebe.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +27,15 @@ public class TestRecordController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private PlaceVisitService placeVisitService;
+
+    @Autowired
+    private HealthCodeService healthCodeService;
+
+    @Autowired
+    private ColorChangeService colorChangeService;
 
     @RequestMapping("/sampled_info")
     public boolean sampleInfo (@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition) {
@@ -67,7 +74,60 @@ public class TestRecordController {
         testRecord.setTesterIdNumber(id_number);
         // 改码的颜色
 
-        return testRecordService.updateDetectResult(testRecord);
+        boolean flag = testRecordService.updateDetectResult(testRecord);
+
+        if(flag == true){
+            String target_id = testRecord.getIdNumber().toString();
+            if(testRecord.getResult() == 2){
+                // 阳了，需要将密接转黄
+                List<Id> CloseIdNumbers = placeVisitService.getCloseContactById(target_id);
+                for(Id _id : CloseIdNumbers){
+                    String id = _id.getIdNumber();
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id_number", id);
+                    map.put("tocolor", 1);
+                    HealthCode healthCode = healthCodeService.getHealthCodeById(id);
+                    if(healthCode.getColor() > 1) {
+                        // 绿转黄
+                        healthCodeService.healthCodeChangeById(map);
+
+                        ColorChange colorChange = new ColorChange();
+                        colorChange.setReason("Close contact with Positive, 阳性密接");
+                        colorChange.setTocolor(1);
+                        colorChange.setTime(LocalDateTime.now());
+                        colorChange.setIdNumber(id);
+                        colorChangeService.addColorChange(colorChange);
+                    }
+                }
+                // 将本人变红
+                Map<String, Object> map = new HashMap<>();
+                map.put("id_number", target_id);
+                map.put("tocolor", 0);
+                healthCodeService.healthCodeChangeById(map);
+
+                ColorChange colorChange = new ColorChange();
+                colorChange.setReason("Postive, 阳了");
+                colorChange.setTocolor(0);
+                colorChange.setTime(LocalDateTime.now());
+                colorChange.setIdNumber(target_id);
+                colorChangeService.addColorChange(colorChange);
+            } else if (testRecord.getResult() == 1) {
+                // 阴了，转绿
+                Map<String, Object> map = new HashMap<>();
+                map.put("id_number", target_id);
+                map.put("tocolor", 2);
+                healthCodeService.healthCodeChangeById(map);
+
+                ColorChange colorChange = new ColorChange();
+                colorChange.setReason("Negative, 阴了");
+                colorChange.setTocolor(2);
+                colorChange.setTime(LocalDateTime.now());
+                colorChange.setIdNumber(target_id);
+                colorChangeService.addColorChange(colorChange);
+            }
+
+        }
+        return flag;
     }
 
     @RequestMapping("/rna_detect_result")

@@ -7,6 +7,10 @@
         <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
     </resultMap>
 
+    <resultMap id="BaseIdMap" type="com.example.healthcodebe.entity.Id">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    </resultMap>
+
     <resultMap id="BasePlaceVisitInfoMap" type="com.example.healthcodebe.entity.PlaceVisitInfo">
         <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
         <result column="place_id" property="placeId" jdbcType="INTEGER" />
@@ -38,5 +42,19 @@
             <if test="visitTime != null">#{visitTime},</if>
         </trim>
     </insert>
+
+    <select id="getCloseContactById" resultMap="BaseIdMap" parameterType="String">
+        select B.id_number from
+        place_visit AS A, place_visit AS B
+        <where>
+            A.id_number = #{id} AND
+            A.place_id = B.place_id AND
+            A.id_number != B.id_number AND
+            B.visit_time > date_sub(A.visit_time, interval 2 hour) AND
+            B.visit_time > date_sub(NOW(), interval 7 day) AND
+            date_add(A.visit_time, interval 2 hour) > B.visit_time
+        </where>
+    </select>
+
 
 </mapper>

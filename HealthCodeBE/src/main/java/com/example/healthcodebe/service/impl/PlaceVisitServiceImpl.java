@@ -1,5 +1,6 @@
 package com.example.healthcodebe.service.impl;
 
+import com.example.healthcodebe.entity.Id;
 import com.example.healthcodebe.entity.PlaceVisit;
 import com.example.healthcodebe.entity.PlaceVisitInfo;
 import com.example.healthcodebe.mapper.PlaceVisitMapper;
@@ -31,5 +32,10 @@ public class PlaceVisitServiceImpl extends ServiceImpl<PlaceVisitMapper, PlaceVi
     @Override
     public void addPlaceVisit(PlaceVisit placeVisit){
         placeVisitMapper.addPlaceVisit(placeVisit);
+    }
+
+    @Override
+    public List<Id> getCloseContactById(String id){
+        return placeVisitMapper.getCloseContactById(id);
     }
 }
