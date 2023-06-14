@@ -145,4 +145,15 @@ public class AccountController {
         }
         return accountService.getAuthorityInfo();
     }
+
+    @RequestMapping("/checklogin")
+    public String checkLogin(@RequestHeader("Authorization") String token){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Account account = accountService.getAccountById(id_number);
+        String token_new = accountService.getToken(account, 24*60* 60 * 1000);
+        String refreshToken_new = accountService.getToken(account, 24*60*60*1000); // 有效期一天
+        account.setToken(token_new);
+        account.setRefreshToken(refreshToken_new);
+        return token_new;
+    }
 }

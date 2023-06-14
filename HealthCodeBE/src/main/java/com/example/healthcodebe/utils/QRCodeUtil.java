@@ -39,6 +39,7 @@ public class QRCodeUtil {
                 } else if (Objects.equals(color, "Yellow")) {  // Yellow
                     image.setRGB(x, y, bitMatrix.get(x, y) ? 0xFFFFFF00 : 0xFFFFFFFF);
                 } else {
+                    // Black
                     image.setRGB(x, y, bitMatrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF);
                 }
 

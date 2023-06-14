@@ -182,29 +182,20 @@ DROP TABLE IF EXISTS `test_position`;
 CREATE TABLE `test_position`  (
                                   `place_id` int(12) NOT NULL UNIQUE,
                                   `manager_id_number` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                                  `start_time` TIME,
+                                  `end_time` TIME,
                                   PRIMARY KEY (`place_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of test position
 -- ----------------------------
-INSERT INTO `test_position` (place_id, manager_id_number) VALUES (1, '333333333333333333');
+INSERT INTO `test_position` (place_id, manager_id_number, start_time, end_time) VALUES (1, '333333333333333333', '18:00:00', '20:00:00');
 
 -- ----------------------------
 -- Table structure for test time
 -- ----------------------------
 DROP TABLE IF EXISTS `test_time`;
-CREATE TABLE `test_time`  (
-                              `place_id` int(12) NOT NULL,
-                              `start_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                              `end_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                              PRIMARY KEY (`place_id`, `start_time`, `end_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of test time
--- ----------------------------
-INSERT INTO `test_time` (place_id, start_time, end_time) VALUES (1, NOW(), NOW());
 
 -- ----------------------------
 -- Table structure for color change

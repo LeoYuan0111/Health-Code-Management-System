@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.healthcodebe.mapper.PlaceVisitMapper">
+    <resultMap id="BasePlaceVisitMap" type="com.example.healthcodebe.entity.PlaceVisit">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+        <result column="place_id" property="placeId" jdbcType="INTEGER" />
+        <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="BasePlaceVisitInfoMap" type="com.example.healthcodebe.entity.PlaceVisitInfo">
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+        <result column="place_id" property="placeId" jdbcType="INTEGER" />
+        <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
+        <result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getPlaceVisitInfoById" resultMap="BasePlaceVisitInfoMap" parameterType="String">
+        SELECT
+        id_number, place_visit.place_id, visit_time, detail_addr
+        FROM
+        place_visit NATURAL JOIN place_code
+        <where>
+            id_number = #{id}
+        </where>
+        ORDER BY visit_time DESC
+    </select>
+
+    <insert id="addPlaceVisit" parameterType="com.example.healthcodebe.entity.PlaceVisit">
+        INSERT INTO place_visit
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null">id_number,</if>
+            <if test="placeId != null">place_id,</if>
+            <if test="visitTime != null">visit_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null">#{idNumber},</if>
+            <if test="placeId != null">#{placeId},</if>
+            <if test="visitTime != null">#{visitTime},</if>
+        </trim>
+    </insert>
 
 </mapper>

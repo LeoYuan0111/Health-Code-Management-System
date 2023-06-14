@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.time.LocalTime;
+
 /**
  * <p>
  * 
@@ -25,24 +27,16 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "TestPosition对象", description = "")
 public class TestPosition {
 
-    @TableId(value = "tp_id", type = IdType.AUTO)
-    private Integer tpId;
-
-    @TableField("province")
-    private String province;
-
-    @TableField("city")
-    private String city;
-
-    @TableField("county")
-    private String county;
-
-    @TableField("village")
-    private String village;
-
-    @TableField("detail_addr")
-    private String detailAddr;
+    @TableId(value = "place_id", type = IdType.AUTO)
+    private Integer placeId;
 
     @TableField("manager_id_number")
     private String managerIdNumber;
+
+    @TableField("start_time")
+    private LocalTime startTime;
+
+    @TableField("end_time")
+    private LocalTime endTime;
+
 }

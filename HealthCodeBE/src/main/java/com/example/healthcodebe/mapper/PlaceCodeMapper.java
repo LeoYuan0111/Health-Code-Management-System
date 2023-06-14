@@ -3,6 +3,9 @@ package com.example.healthcodebe.mapper;
 import com.example.healthcodebe.entity.PlaceCode;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -14,5 +17,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PlaceCodeMapper extends BaseMapper<PlaceCode> {
+    PlaceCode getPlaceCodeById(String id);
 
+    PlaceCode getNewPlaceCode(@Param("condition") Map<String, Object> condition);
+
+    void addPlaceCode(PlaceCode placeCode);
 }

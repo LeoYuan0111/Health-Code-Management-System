@@ -2,7 +2,10 @@ package com.example.healthcodebe.mapper;
 
 import com.example.healthcodebe.entity.PlaceVisit;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.healthcodebe.entity.PlaceVisitInfo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PlaceVisitMapper extends BaseMapper<PlaceVisit> {
+    List<PlaceVisitInfo> getPlaceVisitInfoById(String id);
 
+    void addPlaceVisit(PlaceVisit placeVisit);
 }

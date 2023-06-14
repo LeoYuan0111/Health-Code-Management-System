@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author hyc
@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("place_visit")
 @ApiModel(value = "PlaceVisit对象", description = "")
-public class PlaceVisit {
+public class PlaceVisitInfo {
 
     @TableField("id_number")
     private String idNumber;
@@ -34,4 +34,7 @@ public class PlaceVisit {
 
     @TableField("visit_time")
     private LocalDateTime visitTime;
+
+    @TableField("detail_addr")
+    private String detailAddr;
 }
