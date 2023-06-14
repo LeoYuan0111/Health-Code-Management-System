@@ -1,12 +1,13 @@
 <script setup lang="ts">
-export interface Record {
-	result: boolean,
-	time: string,
-	sample_time: string
-}
+import type { RnaRecord } from '@/stores/rna_record'
+// export interface Record {
+// 	result: number,
+// 	time: string,
+// 	sample_time: string
+// }
 
 const props = defineProps<{
-	record: Record
+	record: RnaRecord
 }>()
 
 </script>
@@ -16,11 +17,14 @@ const props = defineProps<{
 			<el-col :span="10" class="title">
 				检测结果
 			</el-col>
-			<el-col v-if="props.record.result" :span="8" class="result-tag negative">
+			<el-col v-if="props.record.result == 1" :span="8" class="result-tag negative">
 				阴性
 			</el-col>
-			<el-col v-else :span="8" class="result-tag positive">
+			<el-col v-else-if="props.record.result == 2" :span="8" class="result-tag positive">
 				阳性
+			</el-col>
+			<el-col v-else :span="8" class="result-tag unknown">
+				报告未出
 			</el-col>
 		</el-row>
 		<el-row class="time-row" >
@@ -29,7 +33,7 @@ const props = defineProps<{
 			</el-col>
 			<el-col :span="16" class="time">
 				<!-- 2022-12-05 21:41:33 -->
-				{{ props.record.time }}
+				{{ props.record.date.split('T').join(' ') }}
 			</el-col>
 		</el-row>
 		<el-row class="time-row">
@@ -38,7 +42,7 @@ const props = defineProps<{
 			</el-col>
 			<el-col :span="16" class="time">
 				<!-- 2022-12-05 17:12:16 -->
-				{{ props.record.sample_time }}
+				{{ props.record.date.split('T').join(' ') }}
 			</el-col>
 		</el-row>
 	</el-row>
@@ -87,6 +91,10 @@ const props = defineProps<{
 .positive {
 	border: 0.2rem solid #ff0000;
 	color: #ff0000;
+}
+.unknown {
+	border: 0.2rem solid #aaaaaa;
+	color: #777777;
 }
 .time-row {
 	height: 25%;

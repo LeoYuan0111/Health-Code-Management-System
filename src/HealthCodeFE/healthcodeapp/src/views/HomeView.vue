@@ -1,14 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import LoginForm from '../components/LoginForm.vue'
 import RegisterForm from '@/components/RegisterForm.vue';
 import AdvancedForm from '@/components/AdvancedForm.vue';
 import HomePic from '@/components/HomePic.vue';
 import IconBubble from '@/components/icons/IconBubble.vue'
+import { useUserStore } from '@/stores/user';
+import { useRouter } from 'vue-router';
+
 
 const login_drawer = ref(false)
 const register_drawer = ref(false)
 const advanced_drawer = ref(false)
+const router = useRouter()
+const { checkLogin } = useUserStore()
+
+onMounted(async () => {
+  if(await checkLogin()) {
+    router.push('/main')
+  }
+  
+})
 
 </script>
 
