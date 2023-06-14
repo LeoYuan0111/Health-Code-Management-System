@@ -7,18 +7,18 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 
 const form = reactive({
-	name: '',
+	// name: '',
 	id: '',
 	passwd: '',
 })
 const ruleFormRef = ref<FormInstance>()
 
 const rules = reactive<FormRules>({
-	name: [{
-		required: true,
-		message: '请输入姓名',
-		trigger: 'blur'
-	}],
+	// name: [{
+	// 	required: true,
+	// 	message: '请输入姓名',
+	// 	trigger: 'blur'
+	// }],
 	id: [{
 		required: true,
 		message: '请输入身份证号',
@@ -41,17 +41,17 @@ const onSubmit = (formEl: FormInstance | undefined) => {
 	console.log(form)
 	formEl.validate((valid) => {
 		if (valid) {
-			user.login(form.name, form.id, form.passwd).then((res) => {
-				if (res.code === 200) {
+			user.login(form.id, form.passwd).then((res) => {
+				if (res) {
 					ElMessage({
 						type: 'success',
 						message: '登录成功',
 					})
-					router.push('/main')
+					// router.push('/main')
 				} else {
 					ElMessage({
 						type: 'error',
-						message: '登录失败!' + res.msg,
+						message: '登录失败!',
 					})
 				}
 			})
@@ -64,9 +64,9 @@ const onSubmit = (formEl: FormInstance | undefined) => {
 </script>
 <template>
 	<el-form ref="ruleFormRef" :model="form" class="form" :rules="rules">
-		<el-form-item class="item" prop="name">
+		<!-- <el-form-item class="item" prop="name">
 			<el-input v-model="form.name" placeholder="姓名" class="input"></el-input>
-		</el-form-item>
+		</el-form-item> -->
 		<el-form-item class="item" prop="id">
 			<el-input v-model="form.id" placeholder="身份证号" class="input"></el-input>
 		</el-form-item>
