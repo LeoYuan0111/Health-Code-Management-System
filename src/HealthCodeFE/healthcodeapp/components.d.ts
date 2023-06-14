@@ -9,9 +9,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AdcanvedForm: typeof import('./src/components/AdcanvedForm.vue')['default']
-    AdcanveForm: typeof import('./src/components/AdcanveForm.vue')['default']
     AdvancedForm: typeof import('./src/components/AdvancedForm.vue')['default']
+    CodeAppealRecord: typeof import('./src/components/CodeAppealRecord.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -26,6 +25,8 @@ declare module '@vue/runtime-core' {
     ElMain: typeof import('element-plus/es')['ElMain']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPagination: typeof import('element-plus/es')['ElPagination']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
@@ -36,10 +37,12 @@ declare module '@vue/runtime-core' {
     Icon4Administrator: typeof import('./src/components/icons/Icon4Administrator.vue')['default']
     Icon5Administrator: typeof import('./src/components/icons/Icon5Administrator.vue')['default']
     Icon6Administrator: typeof import('./src/components/icons/Icon6Administrator.vue')['default']
+    IconAgree: typeof import('./src/components/icons/IconAgree.vue')['default']
     IconBubble: typeof import('./src/components/icons/IconBubble.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
+    IconFile: typeof import('./src/components/icons/IconFile.vue')['default']
     IconManager: typeof import('./src/components/icons/IconManager.vue')['default']
     IconProfile: typeof import('./src/components/icons/IconProfile.vue')['default']
     IconQuery: typeof import('./src/components/icons/IconQuery.vue')['default']

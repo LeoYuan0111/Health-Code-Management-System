@@ -51,7 +51,7 @@ const onSubmit = () => {
           <el-input v-model="form.user_id" class="input"></el-input>
         </el-form-item>
         <el-form-item label="转码颜色" class="formLabel">
-          <el-select v-model="form.color" class="input" :placeholder="''">
+          <el-select v-model="form.color" class="input" :placeholder="' '">
             <el-option value="黄码" class="select_item">黄码</el-option>
             <el-option value="红码" class="select_item">红码</el-option>
           </el-select>

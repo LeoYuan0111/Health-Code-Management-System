@@ -42,20 +42,23 @@ const onSubmit2 = () => {
         <IconReturn />
         </el-col>
         <el-col :span="21">
-        <h1 class="title">场所码管理</h1>
+        <h1 class="title">核酸采样地点管理</h1>
         </el-col>
       </el-row>
     </el-header>
     <el-header class="header">
-      <p class="text">收回已申请场所码</p>
+      <p class="text">查看核酸采样点</p>
     </el-header>
     <el-main class="main"> 
       <el-form :model="form1" class="form">
-        <el-form-item label="场所码编号" class="formLabel">
+        <el-form-item label="采样点名称" class="formLabel">
           <el-input v-model="form1.site_id" class="input"></el-input>
         </el-form-item> 
-        <el-form-item label="收回理由" class="formLabel">
-          <el-input v-model="form1.reason" class="input" type="textarea" :rows="2"></el-input>
+        <el-form-item label="采样点地点" class="formLabel">
+          <el-input v-model="form1.reason" class="input"></el-input>
+        </el-form-item> 
+        <el-form-item :label="'采样点采样时间'" class="formLabel">
+          <el-input v-model="form1.reason" class="input"></el-input>
         </el-form-item> 
         <el-form-item class="submit_item">
           <el-button type="primary" class="submit" @click="onSubmit1">提交</el-button>
@@ -63,16 +66,32 @@ const onSubmit2 = () => {
       </el-form>
     </el-main>
     <el-header class="header">
-      <p class="text">查看场所码</p>
+      <p class="text">修改核酸采样点</p>
     </el-header>
     <el-main class="main"> 
-      <el-form :model="form2" class="form">
-        <el-form-item label="场所码编号" class="formLabel">
-          <el-input v-model="form2.site_id" class="input"></el-input>
+      <el-form :model="form1" class="form">
+        <el-form-item label="采样点名称" class="formLabel">
+          <el-input v-model="form1.site_id" class="input"></el-input>
         </el-form-item> 
-        <el-form-item class="submit_item2">
-          <el-button type="primary" class="submit" @click="onSubmit2">查看详情</el-button>
+        <el-form-item :label="'采样点采样时间'" class="formLabel">
+          <el-input v-model="form1.reason" class="input"></el-input>
         </el-form-item> 
+        <el-form-item class="submit_item">
+          <el-button type="primary" class="submit" @click="onSubmit1">提交</el-button>
+        </el-form-item> 
+      </el-form>
+    </el-main>
+    <el-header class="header">
+      <p class="text">删除核酸采样点</p>
+    </el-header>
+    <el-main class="main"> 
+      <el-form :model="form1" class="form">
+        <el-form-item label="采样点名称" class="formLabel">
+          <el-input v-model="form1.site_id" class="input"></el-input>
+        </el-form-item>
+        <el-form-item class="submit_item">
+          <el-button type="primary" class="submit" @click="onSubmit1">提交</el-button>
+        </el-form-item>  
       </el-form>
     </el-main>
 
@@ -102,6 +121,10 @@ const onSubmit2 = () => {
 .el-header{
   margin-left:-28px;
 } 
+.submit_item{
+  padding-top: 0;
+  margin-bottom: 0;
+}
 
 .name{
   padding-left: 0px;
@@ -135,8 +158,7 @@ const onSubmit2 = () => {
   font-size: 20px;
 }
 .header{
-  height:8vh;
-  padding-top:4vh;
+  height:4vh;
 }
 .main {
   display: flex;
@@ -148,8 +170,9 @@ const onSubmit2 = () => {
   margin: 0 -32px;
   border-radius: 20px;
   height:auto;
-  padding:2.5rem 1.5rem;
+  padding: 1rem;
   margin:0 -32px;
+  
 }
 
 .icon {
@@ -161,15 +184,6 @@ const onSubmit2 = () => {
 .form {
   font-size: 28px;
   line-height: 20vh;
-}
-
-.submit_item{
-  padding-top: 10%;
-  margin-bottom: 0;
-}
-.submit_item2{
-  padding-top: 5%;
-  margin-bottom: 0;
 }
 
 .submit {

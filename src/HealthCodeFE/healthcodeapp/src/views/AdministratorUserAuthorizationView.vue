@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
-import IconScanQRCode from '@/components/icons/IconScanQRCode.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
+import IconFile from '@/components/icons/IconFile.vue';
 const router = useRouter()
 
 const onReturn = () => {
-  router.push('/sampler')
+  router.push('/administrator')
 }
 
 const form = reactive({
-  user_id: '',
-  vac_name: '',
-  vac_num: '',
-  vac_time: '',
-  address: ''
+    superuser_id : '' ,
+    passwd : '' ,
+    phone : '' ,
+    superuser_name : '',
+    type : ''  //权限类型（目前只填了这个）
 })
 
 const onSubmit = () => {
@@ -32,36 +32,47 @@ const onSubmit = () => {
           <IconReturn />
         </el-col>
         <el-col :span="21">
-          <h1 class="title">采样者疫苗接种页面</h1>
+          <h1 class="title">高级用户授权管理</h1>
         </el-col>
       </el-row>
     </el-header>
     <el-main class="main">
-      <div class="greenback"></div>
-      <IconScanQRCode class="iconbig" />
-      <p class="boldtext">请扫描疫苗接种者健康码</p>
+      <el-icon size="210">
+        <IconFile class="iconbig" />
+      </el-icon>
+      <p class="boldtext">文件名:授权信息.xlsx</p>
     </el-main>
     <el-footer class="footer">
-      <p class="name">接种者姓名:</p>
       <el-form :model="form" class="form">
-        <el-form-item label="接种针数">
-          <el-select v-model="form.vac_num" :placeholder="' '">
-            <el-option value="第一针">第一针</el-option>
-            <el-option value="第二针">第二针</el-option>
-            <el-option value="加强针">加强针</el-option>
+        <el-form-item label="授权身份" class="formLabel">
+          <el-select v-model="form.vac_time" class="input" :placeholder="' '">
+            <el-option value="采样者" class="select_item">采样者</el-option>
+            <el-option value="检测者" class="select_item">检测者</el-option>
+            <el-option value="管理者" class="select_item">管理者</el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="接种地点">
-          <el-input v-model="form.address" class="input" type="textarea" :rows="3"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" class="submit" @click="onSubmit">提交</el-button>
-        </el-form-item>
+        <el-form-item class="submit_item">
+          <el-button type="primary" class="submit" >提交</el-button>
+        </el-form-item> 
       </el-form>
     </el-footer>
   </el-container>
 </template>
-
+<style>
+  .formLabel .el-form-item__label {
+    font-size:24px;
+    font-weight:400;
+    color:black;
+  }
+  .el-input__inner {
+    height: 40px;
+    font-size: 20px;
+    }
+    .input {
+    height:40px;
+    font-size: 20px;
+    }
+</style>
 
 <style scoped>
 .name {
@@ -69,15 +80,19 @@ const onSubmit = () => {
   padding-bottom: 30px;
   color: #666666;
 }
-
+.select_item{
+  height: 35px;
+  line-height: 25px;
+  font-size: 20px;
+}
 .text {
   color: black;
   font-size: 16px;
 }
 
 .boldtext {
-  color: black;
-  font-size: 16px;
+  color: #666666;
+  font-size: 22px;
   font-weight: bold;
 }
 
@@ -98,10 +113,8 @@ const onSubmit = () => {
   align-items: center;
   flex-direction: column;
   height: 350px;
-  background: #01A28C61;
-  border-radius: 20px;
-  padding: 50px;
-  margin: 20px;
+  padding: 0;
+  margin: 0;
 
 }
 
@@ -112,6 +125,7 @@ const onSubmit = () => {
   flex-direction: column;
   height: auto;
   padding: 15px;
+  margin: 5vh 0;
 }
 
 .icon {
@@ -124,8 +138,13 @@ const onSubmit = () => {
 .iconbig {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 60%;
+  align-item:center;
+  width: 90%;
+}
+
+.submit_item{
+  padding-top: 15vh;
+  margin-bottom: 0;
 }
 
 .el-row {

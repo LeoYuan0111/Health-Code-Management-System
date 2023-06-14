@@ -1,35 +1,40 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
-// import { Record } from '@/components/RNARecord.vue';
-import type { Record } from '@/components/VacRecord.vue';
-import VacRecord from '@/components/VacRecord.vue';
+import type { Record } from '@/components/CodeAppealRecord.vue';
+import VacRecord from '@/components/CodeAppealRecord.vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const onReturn = () => {
-  router.push('/main')
+  router.push('/administrator')
 }
 
 const records = reactive<Record[]>([
   {
-    vacnum: '第一针',
-		name: '新冠疫苗 (Vero 细胞)',
-    time: '2022-12-05 21:41:33',
-    site: '浙江大学医学院'
+		name : '唐可可' , //申诉用户名
+    color : '红码' ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
+    reason : 'QWQQWQQWQ' , //申诉理由
+    time : '2022-5-23 16:10:07' //申诉时间
   },
-	{
-    vacnum: '第二针',
-		name: '新冠疫苗 (Vero 细胞)',
-    time: '2022-12-05 21:41:33',
-    site: '浙江大学医学院'
+  {
+		name : '唐可可' , //申诉用户名
+    color : '红码' ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
+    reason : 'QWQQWQQWQ' , //申诉理由
+    time : '2022-5-23 16:10:07' //申诉时间
   },
-	{
-    vacnum: '第三针',
-		name: '新冠疫苗 (Vero 细胞)',
-    time: '2022-12-05 21:41:33',
-    site: '浙江大学医学院'
+  {
+		name : '唐可可' , //申诉用户名
+    color : '红码' ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
+    reason : 'QWQQWQQWQ' , //申诉理由
+    time : '2022-5-23 16:10:07' //申诉时间
+  },
+  {
+		name : '唐可可' , //申诉用户名
+    color : '红码' ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
+    reason : 'QWQQWQQWQ' , //申诉理由
+    time : '2022-5-23 16:10:07' //申诉时间
   },
 ])
 
@@ -46,7 +51,7 @@ const records = reactive<Record[]>([
           <IconReturn />
         </el-col>
         <el-col :span="19">
-          <h1 class="title">核酸检测记录</h1>
+          <h1 class="title">健康码申诉处理</h1>
         </el-col>
       </el-row>
     </el-header>
@@ -86,9 +91,12 @@ const records = reactive<Record[]>([
   flex-direction: column;
   padding: 0;
   margin: 0;
-  height: 70vh;
+  height: auto;
 }
 .record {
   margin: 1rem 0;
 }
+
+
+
 </style>

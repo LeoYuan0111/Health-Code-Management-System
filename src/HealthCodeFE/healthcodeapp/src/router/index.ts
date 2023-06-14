@@ -60,6 +60,21 @@ const router = createRouter({
       path:'/administrator/place_code',
       name:'administrator_place_code',
       component: () => import('../views/AdministratorPlaceCodeView.vue')
+    },
+    {
+      path:'/administrator/na_place',
+      name:'administrator_na_place',
+      component: () => import('../views/AdministratorNAPlaceView.vue')
+    },
+    {
+      path:'/administrator/user_authorization',
+      name:'administrator_user_authorization',
+      component: () => import('../views/AdministratorUserAuthorizationView.vue')
+    },
+    {
+      path:'/administrator/code_appeal' ,
+      name:'administrator_code_appeal' ,
+      component: () => import('../views/AdministratorCodeAppeal.vue')
     }
 
   ]

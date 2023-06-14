@@ -31,7 +31,7 @@ const onClickIcon4 = () => {
 }
 
 const onClickIcon5 = () => {
-  router.push('/administrator/sample_place')
+  router.push('/administrator/na_place')
 }
 
 const onClickIcon6 = () => {
@@ -54,16 +54,30 @@ const onClickIcon6 = () => {
       </el-row>
     </el-header>
     <el-main class="main">
-      <Icon1Administrator class="iconbig" @click="onClickIcon1"/>
-      <Icon2Administrator class="iconbig" @click="onClickIcon2"/>
+      <el-icon size="210">
+        <Icon1Administrator class="iconbig" @click="onClickIcon1"/>
+      </el-icon>
+      <el-icon size="210">
+        <Icon2Administrator class="iconbig" @click="onClickIcon2"/>
+      </el-icon>
+      
     </el-main>
     <el-main class="main">
-      <Icon3Administrator class="iconbig" @click="onClickIcon3"/>
-      <Icon4Administrator class="iconbig" @click="onClickIcon4"/>
+      <el-icon size="210">
+        <Icon3Administrator class="iconbig" @click="onClickIcon3"/>
+      </el-icon>
+      <el-icon size="210">
+        <Icon4Administrator class="iconbig" @click="onClickIcon4"/>
+      </el-icon>
     </el-main>
+
     <el-main class="main">
-      <Icon5Administrator class="iconbig" @click="onClickIcon5"/>
-      <Icon6Administrator class="iconbig" @click="onClickIcon6"/>
+      <el-icon size="210">
+        <Icon5Administrator class="iconbig" @click="onClickIcon5"/>
+      </el-icon>
+      <el-icon size="210">
+        <Icon6Administrator class="iconbig" @click="onClickIcon6"/>
+      </el-icon>
     </el-main>
   </el-container>
 </template>
