@@ -31,7 +31,7 @@ public class HealthCode {
     private String idNumber;
 
     @TableField("color")
-    private Boolean color;
+    private Integer color;
 
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;

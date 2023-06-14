@@ -31,8 +31,8 @@ public class Person {
     @TableField("real_name")
     private String realName;
 
-    @TableField("email")
-    private String email;
+    @TableField("phone")
+    private String phone;
 
     @TableField("age")
     private Integer age;

@@ -25,7 +25,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "Account对象", description = "")
 public class Account {
 
-    @TableId(value = "id_number", type = IdType.AUTO)
+    @TableId(value = "id_number")
     private String idNumber;
 
     @TableField("`password`")
@@ -42,4 +42,8 @@ public class Account {
 
     @TableField("tester")
     private Boolean tester;
+
+    private String token;
+
+    private String refreshToken;
 }

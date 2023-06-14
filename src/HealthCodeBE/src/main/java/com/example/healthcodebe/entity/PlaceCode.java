@@ -31,6 +31,12 @@ public class PlaceCode {
     @TableField("phone_number")
     private String phoneNumber;
 
+    @TableField("longitude")
+    private double longitude;
+
+    @TableField("latitude")
+    private double latitude;
+
     @TableField("province")
     private String province;
 

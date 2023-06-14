@@ -33,8 +33,9 @@ public class VaccinationRecord {
     private Integer vaccId;
 
     @TableField("`date`")
-    private LocalDateTime date;
+    private LocalDateTime injectDate;
 
     @TableField("doc_id_number")
     private String docIdNumber;
+
 }

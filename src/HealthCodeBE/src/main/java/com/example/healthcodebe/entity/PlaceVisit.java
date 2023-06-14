@@ -26,10 +26,10 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "PlaceVisit对象", description = "")
 public class PlaceVisit {
 
-    @TableField("visit_time")
+    @TableField("id_number")
     private String idNumber;
 
-    @TableField("visit_time")
+    @TableField("place_id")
     private Integer placeId;
 
     @TableField("visit_time")

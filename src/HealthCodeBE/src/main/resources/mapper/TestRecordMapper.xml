@@ -1,5 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.healthcodebe.mapper.TestRecordMapper">
+    <resultMap id="BaseTestRecordMap" type="com.example.healthcodebe.entity.TestRecord">
+        <result column="tube_id" property="tubeId" jdbcType="INTEGER"/>
+        <result column="id_number" property="idNumber" jdbcType="VARCHAR"/>
+        <result column="date" property="date" jdbcType="TIMESTAMP"/>
+        <result column="sampler_id_number" property="samplerIdNumber" jdbcType="VARCHAR"/>
+        <result column="tester_id_number" property="testerIdNumber" jdbcType="VARCHAR"/>
+        <result column="result" property="result" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getByTubeId" resultMap="BaseTestRecordMap" parameterType="String">
+        SELECT
+        *
+        FROM
+        test_record
+        <where>
+            tube_id = #{tube_id}
+        </where>
+    </select>
+
+    <insert id="addSampleInfo" parameterType="com.example.healthcodebe.entity.TestRecord">
+        INSERT INTO test_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null">id_number,</if>
+            <if test="tubeId != null">tube_id,</if>
+            <if test="date != null">date,</if>
+            <if test="samplerIdNumber != null">sampler_id_number,</if>
+            <if test="testerIdNumber != null">tester_id_number,</if>
+            <if test="result != null">result,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="idNumber != null">#{idNumber},</if>
+            <if test="tubeId != null">#{tubeId},</if>
+            <if test="date != null">#{date},</if>
+            <if test="samplerIdNumber != null">#{samplerIdNumber},</if>
+            <if test="testerIdNumber != null">#{testerIdNumber},</if>
+            <if test="result != null">#{result},</if>
+        </trim>
+    </insert>
+
+    <update id="updateDetectResult" parameterType="com.example.healthcodebe.entity.TestRecord">
+        UPDATE test_record
+        <set>
+            date = #{date},
+            tester_id_number = #{testerIdNumber},
+            result = #{result}
+        </set>
+        <where>
+            <if test="tubeId != null">
+                tube_id = #{tubeId}
+            </if>
+        </where>
+    </update>
+
+    <select id="getById" resultMap="BaseTestRecordMap" parameterType="string">
+        SELECT
+        *
+        FROM
+        test_record
+        <where>
+            id_number = #{id_number}
+        </where>
+        ORDER BY date DESC
+    </select>
 
 </mapper>

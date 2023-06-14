@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -29,7 +30,7 @@ public class TestRecord {
     @TableField("id_number")
     private String idNumber;
 
-    @TableId(value = "tube_id", type = IdType.AUTO)
+    @TableId(value = "tube_id")
     private Integer tubeId;
 
     @TableField("`date`")
@@ -42,5 +43,5 @@ public class TestRecord {
     private String testerIdNumber;
 
     @TableField("result")
-    private Boolean result;
+    private Integer result;
 }
