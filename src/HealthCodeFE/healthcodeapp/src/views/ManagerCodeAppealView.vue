@@ -1,36 +1,40 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
-import type { Record } from '@/components/CodeAppealRecord.vue';
-import VacRecord from '@/components/CodeAppealRecord.vue';
+import type { Record } from '@/components/ManagerAppealRecord.vue';
+import AppealRecord from '@/components/ManagerAppealRecord.vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const onReturn = () => {
-  router.push('/administrator')
+  router.push('/manager')
 }
 
 const records = reactive<Record[]>([
   {
+    user_id : '123109200201010000' ,
 		name : '唐可可' , //申诉用户名
     color : '红码' ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
     reason : 'QWQQWQQWQ' , //申诉理由
     time : '2022-5-23 16:10:07' //申诉时间
   },
   {
+    user_id : '123109200201010000' ,
 		name : '唐可可' , //申诉用户名
     color : '红码' ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
     reason : 'QWQQWQQWQ' , //申诉理由
     time : '2022-5-23 16:10:07' //申诉时间
   },
   {
+    user_id : '123109200201010000' ,
 		name : '唐可可' , //申诉用户名
     color : '红码' ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
     reason : 'QWQQWQQWQ' , //申诉理由
     time : '2022-5-23 16:10:07' //申诉时间
   },
   {
+    user_id : '123109200201010000' ,
 		name : '唐可可' , //申诉用户名
     color : '红码' ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
     reason : 'QWQQWQQWQ' , //申诉理由
@@ -56,7 +60,7 @@ const records = reactive<Record[]>([
       </el-row>
     </el-header>
     <el-main class="main">
-      <VacRecord v-for="(record, index) in records" :key="index" :record="record" class="record" />
+      <AppealRecord v-for="(record, index) in records" :key="index" :record="record" class="record" />
     </el-main>
   </el-container>
 </template>

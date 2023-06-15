@@ -93,10 +93,14 @@ const onClickVaccination = () => {
 .button-row {
   width: 100%;
   justify-content: center;
+  margin-top : 0;
+  padding-top : 0;
 }
 .icon-row {
-  width: 100%;
+  width: 80%;
+  height: 23vh;
   justify-content: center;
+  align-items: flex-end;
   margin: 1rem 0;
 }
 

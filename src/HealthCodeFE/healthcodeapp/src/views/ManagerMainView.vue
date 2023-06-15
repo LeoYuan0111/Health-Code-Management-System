@@ -15,27 +15,29 @@ const onReturn = () => {
 }
 
 const onClickIcon1 = () => {
-  router.push('/administrator/code_change')
+  router.push('/manager/code_change')
 }
 
 const onClickIcon2  = () => {
-  router.push('/administrator/place_code')
+  console.log("code_appeal")
+  router.push('/manager/place_code')
 }
 
 const onClickIcon3 = () => {
-  router.push('/administrator/code_appeal')
+  console.log("code_appeal")
+  router.push('/manager/code_appeal')
 }
 
 const onClickIcon4 = () => {
-  router.push('/administrator/user_query')
+  router.push('/manager/user_info')
 }
 
 const onClickIcon5 = () => {
-  router.push('/administrator/na_place')
+  router.push('/manager/na_place')
 }
 
 const onClickIcon6 = () => {
-  router.push('/administrator/user_authorization')
+  router.push('/manager/user_authorization')
 }
 
 
@@ -54,28 +56,28 @@ const onClickIcon6 = () => {
       </el-row>
     </el-header>
     <el-main class="main">
-      <el-icon size="210">
+      <el-icon size="195">
         <Icon1Administrator class="iconbig" @click="onClickIcon1"/>
       </el-icon>
-      <el-icon size="210">
+      <el-icon size="195">
         <Icon2Administrator class="iconbig" @click="onClickIcon2"/>
       </el-icon>
       
     </el-main>
     <el-main class="main">
-      <el-icon size="210">
+      <el-icon size="195">
         <Icon3Administrator class="iconbig" @click="onClickIcon3"/>
       </el-icon>
-      <el-icon size="210">
+      <el-icon size="195">
         <Icon4Administrator class="iconbig" @click="onClickIcon4"/>
       </el-icon>
     </el-main>
 
     <el-main class="main">
-      <el-icon size="210">
+      <el-icon size="195">
         <Icon5Administrator class="iconbig" @click="onClickIcon5"/>
       </el-icon>
-      <el-icon size="210">
+      <el-icon size="195">
         <Icon6Administrator class="iconbig" @click="onClickIcon6"/>
       </el-icon>
     </el-main>
@@ -102,6 +104,7 @@ const onClickIcon6 = () => {
   align-items: center;
   flex-direction:row;
   height: auto;
+  height: 28vh;
 }
 
 .icon {

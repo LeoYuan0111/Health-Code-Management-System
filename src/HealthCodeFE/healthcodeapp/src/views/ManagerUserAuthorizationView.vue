@@ -7,7 +7,7 @@ import IconFile from '@/components/icons/IconFile.vue';
 const router = useRouter()
 
 const onReturn = () => {
-  router.push('/administrator')
+  router.push('/manager')
 }
 
 const form = reactive({
@@ -18,7 +18,8 @@ const form = reactive({
     type : ''  //权限类型（目前只填了这个）
 })
 
-const onSubmit = () => {
+const UploadFile = () => {
+  console.log('upload file')
   console.log(form)
 }
 
@@ -38,17 +39,17 @@ const onSubmit = () => {
     </el-header>
     <el-main class="main">
       <el-icon size="210">
-        <IconFile class="iconbig" />
+        <IconFile class="iconbig" @click="UploadFile"/>
       </el-icon>
       <p class="boldtext">文件名:授权信息.xlsx</p>
     </el-main>
     <el-footer class="footer">
       <el-form :model="form" class="form">
         <el-form-item label="授权身份" class="formLabel">
-          <el-select v-model="form.vac_time" class="input" :placeholder="' '">
-            <el-option value="采样者" class="select_item">采样者</el-option>
-            <el-option value="检测者" class="select_item">检测者</el-option>
-            <el-option value="管理者" class="select_item">管理者</el-option>
+          <el-select v-model="form.type" class="input" :placeholder="' '">
+            <el-option label="采样员" value="sampler" class="select_item"/>
+            <el-option label="检测员" value="detector" class="select_item"/>
+            <el-option label="管理员" value="manager" class="select_item"/>
           </el-select>
         </el-form-item>
         <el-form-item class="submit_item">

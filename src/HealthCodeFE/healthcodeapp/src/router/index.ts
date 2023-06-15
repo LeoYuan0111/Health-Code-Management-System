@@ -57,34 +57,39 @@ const router = createRouter({
       component: () => import('../views/SamplerVaccination.vue')
     },
     {
-      path:'/administrator',
-      name:'administrator',
-      component: () => import('../views/AdministratorMainView.vue')
+      path:'/manager',
+      name:'manager',
+      component: () => import('../views/ManagerMainView.vue')
     },
     {
-      path:'/administrator/code_change',
-      name:'administrator_code_change',
-      component: () => import('../views/AdministratorCodeChangeView.vue')
+      path:'/manager/code_change',
+      name:'manager_code_change',
+      component: () => import('../views/ManagerCodeChangeView.vue')
     },
     {
-      path:'/administrator/place_code',
-      name:'administrator_place_code',
-      component: () => import('../views/AdministratorPlaceCodeView.vue')
+      path:'/manager/place_code',
+      name:'manager_place_code',
+      component: () => import('../views/ManagerPlaceCodeView.vue')
     },
     {
-      path:'/administrator/na_place',
-      name:'administrator_na_place',
-      component: () => import('../views/AdministratorNAPlaceView.vue')
+      path:'/manager/na_place',
+      name:'manager_na_place',
+      component: () => import('../views/ManagerNAPlaceView.vue')
     },
     {
-      path:'/administrator/user_authorization',
-      name:'administrator_user_authorization',
-      component: () => import('../views/AdministratorUserAuthorizationView.vue')
+      path:'/manager/user_authorization',
+      name:'manager_user_authorization',
+      component: () => import('../views/ManagerUserAuthorizationView.vue')
     },
     {
-      path:'/administrator/code_appeal' ,
-      name:'administrator_code_appeal' ,
-      component: () => import('../views/AdministratorCodeAppeal.vue')
+      path:'/manager/code_appeal' ,
+      name:'manager_code_appeal' ,
+      component: () => import('../views/ManagerCodeAppealView.vue')
+    },
+    {
+      path:'/manager/user_info',
+      name: '/manager_user_info',
+      component: () => import('../views/ManagerUserInfoView.vue')
     }
 
   ]

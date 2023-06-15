@@ -5,21 +5,33 @@ import { ref } from 'vue'
 
 /* 管理者 健康码申诉 */
 export interface Record {
-	name : string , //申诉用户名
+	user_id : string , //申诉者身份证号
+	name : string , //申诉者姓名
     color : string ,//申诉者当前健康码颜色(红/黄/绿）0/1/2
     reason : string , //申诉理由
     time : string //申诉时间
 }
 
+
+
 const props = defineProps<{
 	record: Record
 }>()
+
 const form = reactive({
-	result : true,
-	reason : ''
+	user_id : props.record.user_id , //申诉者身份证号
+	time : props.record.time , //申诉者申诉时间
+	// 以上两点可以锁定一次申诉
+	result : true, //申诉结果(true-同意 false-驳回)
+	reason : '' //理由
 })
 
 const is_submit = ref(false)
+
+const onSubmit = () => {
+	is_submit.value = true;
+	console.log(form);
+}
 
 </script>
 <template>
@@ -80,9 +92,9 @@ const is_submit = ref(false)
 	<el-row>
 	</el-row>
 		<el-form-item class="submit_item">
-			<el-button type="primary" class="submit" @click="is_submit = true">提交</el-button>
+			<el-button type="primary" class="submit" @click="onSubmit">提交</el-button>
 		</el-form-item>  
-			<el-row class="agree-row tag" v-if="is_submit" align="right">
+			<el-row class="agree-row tag" v-if="is_submit">
 			<el-row v-if="form.result" class="agree">
 				已同意
 			</el-row>

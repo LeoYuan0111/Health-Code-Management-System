@@ -1,12 +1,30 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
+import UserInfoCard from '@/components/ManagerUserInfoCard.vue';
+import { Record } from '@/components/ManagerUserInfoCard.vue';
+
+
 const router = useRouter()
 
 const onReturn = () => {
-	router.push('/administrator')
+	router.push('/manager')
 }
+
+const record = reactive<Record>(
+  {
+    name : '唐可可' ,
+	phone : '13800000000' ,
+    email :'123456789@qq.com' ,
+	addr : '浙江大学玉泉校区' ,
+	health_code : '绿码',
+	RNA_result : '阴性',
+	RNA_time : '2022-12-05 17:12:16',
+  },
+)
+
 
 /*
 表格信息的问题:
@@ -14,17 +32,14 @@ const onReturn = () => {
     2.加了user_name
 */
 const form = reactive({
-  user_name : '',//加了一条用户姓名，后端可以核对防止管理员输入出错
-  user_id : '',
-  color : '',
-  reason : '',
-  time : ''
+  user_id : ''
 })
 
+const is_submit = ref(false);
+
 const onSubmit = () => {
-  let date = new Date();
-  form.time = date.toLocaleString();
-	console.log(form);
+    is_submit.value = true ;
+    console.log(form);
 }
 
 </script>
@@ -37,49 +52,39 @@ const onSubmit = () => {
         <IconReturn />
         </el-col>
         <el-col :span="21">
-        <h1 class="title">健康码转码</h1>
+        <h1 class="title">用户信息查询</h1>
         </el-col>
       </el-row>
     </el-header>
 
     <el-main class="main"> 
       <el-form :model="form" class="form">
-        <el-form-item label="用户姓名" class="formLabel">
-          <el-input v-model="form.user_name" class="input"></el-input>
-        </el-form-item> 
         <el-form-item label="身份证号" class="formLabel">
           <el-input v-model="form.user_id" class="input"></el-input>
-        </el-form-item>
-        <el-form-item label="转码颜色" class="formLabel">
-          <el-select v-model="form.color" class="input" :placeholder="' '">
-            <el-option value="黄码" class="select_item">黄码</el-option>
-            <el-option value="红码" class="select_item">红码</el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="转码理由" class="formLabel">
-          <el-input v-model="form.reason" class="input" type="textarea" :rows="3"></el-input>
         </el-form-item> 
+        <el-form-item>
+            <el-button type="primary" class="submit" @click="onSubmit">提交</el-button>
+        </el-form-item>
       </el-form>
     </el-main>
-    <el-footer>
-      <el-button type="primary" class="submit" @click="onSubmit">提交</el-button>
-    </el-footer>
+    
   </el-container>
+  <el-drawer v-model="is_submit" direction="btt" size="50%" :show-close="false" :with-header="false">
+    <UserInfoCard :record="record" />
+  </el-drawer>
 </template>
 
 <style>
   .formLabel .el-form-item__label {
-    font-size:24px;
+    font-size:1.5rem;
     font-weight:400;
     color:black;
   }
   .el-input__inner {
-  height: 40px;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 .input {
-  height:40px;
-  font-size: 20px;
+  height:auto;
 }
 </style>
 
@@ -121,14 +126,12 @@ const onSubmit = () => {
 
 .main {
   display: flex;
-  
+  height:auto;
   align-items: center;
   flex-direction: column;
-  height: 360px;
-  background-color: #D9D9D9;
-  padding:40px 20px;
-  margin: 80px -32px;
-  border-radius: 20px;
+  width: 100%;
+  padding: 0;
+  margin-top: 7vh;
 }
 .footer{
   display: flex;

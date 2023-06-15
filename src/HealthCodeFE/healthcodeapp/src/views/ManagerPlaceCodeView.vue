@@ -1,13 +1,33 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
+import PlaceCodeView from '@/components/ManagerPlaceCodeCard.vue';
+
+import { Record } from '@/components/ManagerPlaceCodeCard.vue';
 const router = useRouter()
 
+
 const onReturn = () => {
-	router.push('/administrator')
+	router.push('/manager')
 }
 
+
+const record = reactive<Record>(
+  {
+    user_name : '唐可可' , 
+    user_id : '123109200201010000' ,
+    user_phone : '13800000000' ,
+    //场所信息
+    place_name : '浙江大学玉泉校区',
+    place_city : '浙江省杭州市' ,
+    place_addr : '浙大路38号' ,
+  },
+)
+
+
+const view_drawer = ref(false)
 /*
   撤销场所码 表单
 */
@@ -21,6 +41,7 @@ const form1 = reactive({
 */
 const form2 = reactive({
   site_id : ''//场所码编号
+  
 })
 
 
@@ -30,6 +51,7 @@ const onSubmit1 = () => {
 
 const onSubmit2 = () => {
   console.log(form2);
+  view_drawer.value = true;
 }
 
 </script>
@@ -71,12 +93,15 @@ const onSubmit2 = () => {
           <el-input v-model="form2.site_id" class="input"></el-input>
         </el-form-item> 
         <el-form-item class="submit_item2">
-          <el-button type="primary" class="submit" @click="onSubmit2">查看详情</el-button>
+          <el-button type="primary" class="submit" @click="view_drawer = true">查看详情</el-button>
         </el-form-item> 
       </el-form>
     </el-main>
 
   </el-container>
+  <el-drawer v-model="view_drawer" direction="btt" size="50%" :show-close="false" :with-header="false">
+    <PlaceCodeView :record="record" />
+  </el-drawer>
 </template>
 
 <style>

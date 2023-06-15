@@ -1,26 +1,33 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
 import IconScanQRCode from '@/components/icons/IconScanQRCode.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
 const router = useRouter()
 
-
 const onReturn = () => {
 	router.push('/sampler')
 }
 
-const form = reactive({
-  user_id : '',
-  vac_name : '',
-  vac_num : '',
-  vac_time : '',
-  address : ''
-})
+
+
+const number = ref(0);
+
+const ScanHealthCode = () => {
+  number.value ++ ;
+  console.log("scan health code")
+}
+
+const ScanTube = () => {
+  console.log("scan tube")
+}
+
 
 const onSubmit = () => {
   //vac_time  vac_name user_id
-	console.log(form)
+  number.value = 0 ;
+  console.log("submit")
 }
 
 
@@ -39,18 +46,23 @@ const onSubmit = () => {
       </el-row>
     </el-header>
     <el-main class="main">
-      <IconScanQRCode class="iconbig"/>
+      <el-icon size="150">
+        <IconScanQRCode class="iconbig" @click="ScanTube"/>
+      </el-icon>
       <p class="boldtext">请扫描检测试管</p>
     </el-main>
     <el-footer class="footer">
       <p class="text">试管号:</p>
     </el-footer>
     <el-main class="main">
-      <IconScanQRCode class="iconbig"/>
+      <el-icon size="150">
+        <IconScanQRCode class="iconbig" @click="ScanHealthCode"/>    
+      </el-icon>
+        
       <p class="boldtext">请扫描被采样者健康码</p>
     </el-main>
     <el-footer class="footer">
-      <p class="text">被采样人数:</p>
+      <p class="text">被采样人数: {{number}}</p>
     </el-footer>
     <el-main>
       <el-button type="primary" class="submit" @click="onSubmit">提交</el-button>
@@ -60,14 +72,16 @@ const onSubmit = () => {
 
 
 <style scoped>
+
 .text {
   color:black;
-  font-size:16px;
+  font-size:1.2rem;
 }
 .boldtext {
   color:black;
-  font-size:16px;
+  font-size:1.2rem;
   font-weight:bold;
+  margin-top: 0.5rem;
 }
 .title {
   color: #01a28c;
@@ -85,7 +99,7 @@ const onSubmit = () => {
   justify-content: end;
   align-items: center;
   flex-direction: column;
-  height: 250px;
+  height: 28vh;
   background: #01A28C61;
   margin:20px;
   border-radius: 20px;
@@ -108,7 +122,7 @@ const onSubmit = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 100%;
 }
 .el-row {
   display: flex; 
