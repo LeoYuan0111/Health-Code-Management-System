@@ -29,7 +29,8 @@ export const useRnaRecordStore = defineStore('rna_record', () => {
 				result: '无结果'
 			}
 		}
-    const record = records[records.length - 1]
+    console.log(records)
+    const record = records[0]
     const record_date = moment(record.date)
     const getdiff = (date: moment.Moment) => {
       const now = moment()

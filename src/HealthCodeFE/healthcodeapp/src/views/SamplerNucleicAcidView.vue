@@ -68,6 +68,8 @@ const onSubmit = async () => {
     user_id: user_id.value
   }, {}).then((res) => {
     ElMessage.success('提交成功')
+    tube_id.value = ''
+    user_id.value = ''
   }).catch(e => {
     ElMessage.error('提交失败')
   })

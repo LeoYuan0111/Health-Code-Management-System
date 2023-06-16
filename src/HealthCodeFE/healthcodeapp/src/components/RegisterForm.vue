@@ -78,7 +78,7 @@ const onSubmit = (formEl: FormInstance | undefined) => {
 						type: 'success',
 						message: '注册成功',
 					})
-					location.reload()
+					// location.reload()
 					formEl.resetFields()
 				} else {
 					ElMessage({

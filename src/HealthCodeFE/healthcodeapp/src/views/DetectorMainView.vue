@@ -4,7 +4,9 @@ import IconReturn from '@/components/icons/IconReturn.vue';
 import IconScanQRCode from '@/components/icons/IconScanQRCode.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
-// import { getURL } from 
+import { getURL } from '@/utils/url'
+import { fetchPostText } from '@/utils/fetch'
+import { ElMessage } from 'element-plus'
 const router = useRouter()
 
 const onReturn = () => {
@@ -13,16 +15,26 @@ const onReturn = () => {
 
 const form = reactive({
   tube_id: '', //试管号
-  result: true //检测结果
+  result: 1 //检测结果
 })
 
 const ScanTube = () => {
   console.log("scan tube")
 }
 
-const onSubmit = () => {
+const onSubmit = async () => {
   console.log(form)
-
+  await fetchPostText(
+    getURL('/detect_result'),
+    {
+      tube_id: form.tube_id,
+      rna_result: form.result
+    },
+    {}
+  )
+  form.tube_id = ''
+  form.result = 1
+  ElMessage.success('提交成功')
 }
 
 const onView = () => {
@@ -68,8 +80,8 @@ const onView = () => {
           <el-form :model="form" class="form">
             <el-form-item class="formLabel">
               <el-radio-group v-model="form.result">
-                <el-radio :label="true" value=True>阴性</el-radio>
-                <el-radio :label="false" value=False>阳性</el-radio>
+                <el-radio :label="1" value="1">阴性</el-radio>
+                <el-radio :label="2" value="2">阳性</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-form>

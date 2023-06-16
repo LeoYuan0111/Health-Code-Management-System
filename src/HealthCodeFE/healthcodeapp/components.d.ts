@@ -8,10 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AdvancedForm: typeof import('./src/components/AdvancedForm.vue')['default']
-    CodeAppealRecord: typeof import('./src/components/CodeAppealRecord.vue')['default']
-    copy: typeof import('./src/components/ManagerPlaceCode copy.vue')['default']
     DetectorTubeRecord: typeof import('./src/components/DetectorTubeRecord.vue')['default']
-    ElBottom: typeof import('element-plus/es')['ElBottom']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -59,7 +56,6 @@ declare module 'vue' {
     IconTube: typeof import('./src/components/icons/IconTube.vue')['default']
     LoginForm: typeof import('./src/components/LoginForm.vue')['default']
     ManagerAppealRecord: typeof import('./src/components/ManagerAppealRecord.vue')['default']
-    ManagerPlaceCode: typeof import('./src/components/ManagerPlaceCode.vue')['default']
     ManagerPlaceCodeCard: typeof import('./src/components/ManagerPlaceCodeCard.vue')['default']
     ManagerUserInfoCard: typeof import('./src/components/ManagerUserInfoCard.vue')['default']
     RegisterForm: typeof import('./src/components/RegisterForm.vue')['default']

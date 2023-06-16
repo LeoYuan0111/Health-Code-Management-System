@@ -68,6 +68,19 @@ export const useUserStore = defineStore('user', () => {
   async function register (form_name: string, form_id: string, form_phone: string, passwd: string) {
     const passwd_hash = Hex.stringify(hmacSHA256(passwd, salt))
     console.log(passwd_hash)
+    const { code } = await fetchPostText(
+      getURL('/account/register'),
+      {
+        user_id: form_id,
+        passwd: passwd_hash,
+        phone: form_phone,
+      }, {}
+    )
+    console.log(code)
+    if (code !== 200) {
+      return { code: 400, msg: '注册失败' }
+    }
+
     return { code: 200, msg: 'success' }
   }
 
