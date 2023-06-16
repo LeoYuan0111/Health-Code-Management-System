@@ -20,6 +20,9 @@ const form = reactive({
 
 const UploadFile = () => {
   console.log('upload file')
+}
+
+const OnSubmit = () => {
   console.log(form)
 }
 
@@ -53,7 +56,7 @@ const UploadFile = () => {
           </el-select>
         </el-form-item>
         <el-form-item class="submit_item">
-          <el-button type="primary" class="submit" >提交</el-button>
+          <el-button type="primary" class="submit" @click="OnSubmit">提交</el-button>
         </el-form-item> 
       </el-form>
     </el-footer>

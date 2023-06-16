@@ -117,7 +117,6 @@ const onSubmit = () => {
 <style scoped>
 .formLabel /deep/ .el-form-item__label {
 	font-size: 1.2rem;
-	font-weight: bolder;
 	color: #000;
   }
   
@@ -181,7 +180,6 @@ const onSubmit = () => {
 }
 .item-title {
 	font-size: 1.2rem;
-	font-weight: bolder;
 	color: #000;
 	justify-content: left;
 	display: flex;

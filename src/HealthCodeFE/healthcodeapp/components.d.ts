@@ -10,6 +10,8 @@ declare module 'vue' {
     AdvancedForm: typeof import('./src/components/AdvancedForm.vue')['default']
     CodeAppealRecord: typeof import('./src/components/CodeAppealRecord.vue')['default']
     copy: typeof import('./src/components/ManagerPlaceCode copy.vue')['default']
+    DetectorTubeRecord: typeof import('./src/components/DetectorTubeRecord.vue')['default']
+    ElBottom: typeof import('element-plus/es')['ElBottom']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']

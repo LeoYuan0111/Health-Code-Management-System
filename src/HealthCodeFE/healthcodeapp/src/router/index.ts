@@ -88,8 +88,18 @@ const router = createRouter({
     },
     {
       path:'/manager/user_info',
-      name: '/manager_user_info',
+      name:'manager_user_info',
       component: () => import('../views/ManagerUserInfoView.vue')
+    },
+    {
+      path:'/detector',
+      name:'detector',
+      component: () => import('../views/DetectorMainView.vue')
+    },
+    {
+      path:'/detector/view_tube',
+      name:'detector_view_tube',
+      component: () => import('../views/DetectorViewTubeView.vue')
     }
 
   ]

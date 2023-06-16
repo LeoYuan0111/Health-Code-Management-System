@@ -60,6 +60,9 @@ const records = reactive<Record[]>([
       </el-row>
     </el-header>
     <el-main class="main">
+      <el-row class="item-row">
+        申诉列表
+      </el-row>
       <AppealRecord v-for="(record, index) in records" :key="index" :record="record" class="record" />
     </el-main>
   </el-container>
@@ -72,7 +75,13 @@ const records = reactive<Record[]>([
   align-items: center;
   width: 80%;
 }
-
+.item-row {
+	height: auto;
+	width: 100%;
+	margin-top: 0.2rem;
+  font-size:1.5rem;
+  font-weight: 600;
+}
 .title {
   color: #01a28c;
   font-size: 1.5rem;
