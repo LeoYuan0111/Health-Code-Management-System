@@ -11,6 +11,13 @@
 
 Use `nvm` to install latest Node.js.
 
+## Run
+```bash
+cd src/HealthCodeFE/healthcodeapp
+npm i
+npm run dev
+```
+
 
 ### Backend
 
