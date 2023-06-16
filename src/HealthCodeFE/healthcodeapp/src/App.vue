@@ -90,6 +90,7 @@ nav a:first-of-type {
   overflow: hidden;
   width: 20rem;
   height: 20rem;
+  z-index: -99
 }
 #circle1 {
   position: absolute;
@@ -101,7 +102,7 @@ nav a:first-of-type {
   background-color: #01A28C;
   opacity: 0.6;
   background-size: 20px 20px;
-  z-index: -1;
+  z-index: -199;
 }
 #circle2 {
   position: absolute;
@@ -113,6 +114,6 @@ nav a:first-of-type {
   background-color: #01A28C;
   opacity: 0.38;
   background-size: 20px 20px;
-  z-index: -2;
+  z-index: -299;
 }
 </style>

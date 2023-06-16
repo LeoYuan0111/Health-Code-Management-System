@@ -36,7 +36,7 @@ const onLogout = () => {
 			</el-row>
 			<el-row class="button-row" v-if="user.tester">
 				<el-col :span="22" class="button-col">
-					<el-button type="primary" class="button">检测员</el-button>
+					<el-button type="primary" class="button" @click="router.push('/detector')">检测员</el-button>
 				</el-col>
 			</el-row>
 			<el-row class="button-row" v-if="user.admin">
