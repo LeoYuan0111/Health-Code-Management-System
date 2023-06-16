@@ -46,6 +46,14 @@ public class PersonController {
         return person;
     }
 
+    // 用户个人信息
+    @RequestMapping("/user/user_info")
+    public @ResponseBody Object user_user_info(@RequestHeader("Authorization") String token){
+        String id_number = JWT.decode(token).getAudience().get(0);
+        Person person = personService.getPersonById(id_number);
+        return person;
+    }
+
     @RequestMapping("/admin/user_color_list")
     public @ResponseBody Object admin_user_color_list(@RequestHeader("Authorization") String token, @RequestParam Map<String, Object> condition){
         String id_number = JWT.decode(token).getAudience().get(0);

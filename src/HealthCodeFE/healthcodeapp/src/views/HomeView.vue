@@ -1,14 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import LoginForm from '../components/LoginForm.vue'
 import RegisterForm from '@/components/RegisterForm.vue';
 import AdvancedForm from '@/components/AdvancedForm.vue';
 import HomePic from '@/components/HomePic.vue';
 import IconBubble from '@/components/icons/IconBubble.vue'
+import { useUserStore } from '@/stores/user';
+import { useRouter } from 'vue-router';
+
 
 const login_drawer = ref(false)
 const register_drawer = ref(false)
 const advanced_drawer = ref(false)
+const router = useRouter()
+const { checkLogin } = useUserStore()
+
+onMounted(async () => {
+  if (await checkLogin()) {
+    router.push('/main')
+  }
+
+})
 
 </script>
 
@@ -25,10 +37,10 @@ const advanced_drawer = ref(false)
       </el-row>
     </el-header>
     <el-main class="main">
-      <HomePic class="main-pic"/>
+      <HomePic class="main-pic" />
       <el-button type="primary" class="main-button" @click="login_drawer = true">登录</el-button>
       <el-button type="primary" class="main-button" @click="register_drawer = true">注册</el-button>
-      <el-button type="primary" class="main-button" @click="advanced_drawer = true">高级身份认证</el-button>
+      <!-- <el-button type="primary" class="main-button" @click="advanced_drawer = true">高级身份认证</el-button> -->
     </el-main>
   </el-container>
   <el-drawer v-model="login_drawer" title="登录" direction="btt" size="60%" :show-close="false" :with-header="false">
@@ -70,9 +82,11 @@ const advanced_drawer = ref(false)
   font-size: 1.2rem;
   font-weight: bolder;
 }
+
 .main-pic {
   width: 90%;
   margin: 1rem 0;
+  margin-bottom: 10vh;
 }
 
 .icon {
@@ -81,5 +95,4 @@ const advanced_drawer = ref(false)
   align-items: center;
   width: 80%;
 }
-
 </style>

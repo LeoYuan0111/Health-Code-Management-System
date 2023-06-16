@@ -2,7 +2,7 @@
 import { ref, reactive, computed } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user';
+import { useUserStore } from '@/stores/user'
 // import { ElMessage } from 'element-plus';
 
 const router = useRouter()
@@ -13,11 +13,10 @@ const onReturn = () => {
 }
 const onLogout = () => {
   user.logout()
-  
 }
 </script>
 <template>
-	<el-container>
+  <el-container>
     <el-header style="text-align: left">
       <el-row>
         <el-col :span="3" class="icon" @click="onReturn">
@@ -29,22 +28,33 @@ const onLogout = () => {
       </el-row>
     </el-header>
     <el-main class="main">
-      <el-row class="item" >
+      <el-row class="item">
         <el-col :span="8" class="label">姓名</el-col>
         <el-col :span="16" class="value">{{ user.name }}</el-col>
       </el-row>
-      <el-row class="item" >
+      <el-row class="item">
         <el-col :span="8" class="label">身份证号</el-col>
         <el-col :span="16" class="value">{{ user.id }}</el-col>
       </el-row>
-      <el-row class="item" >
+      <el-row class="item">
         <el-col :span="8" class="label">手机号</el-col>
         <el-col :span="16" class="value">{{ user.phone }}</el-col>
       </el-row>
     </el-main>
     <el-footer class="footer">
-      <el-button type="primary" class="button">修改个人信息</el-button>
-      <el-button type="danger" class="button" @click="user.logout()">登出</el-button>
+      <el-row class="button-row">
+        <el-col :span="10" class="button-col">
+          <el-button type="primary" class="button">修改个人信息</el-button>
+        </el-col>
+        <el-col :span="10" class="button-col">
+          <el-button type="danger" class="button" @click="user.logout()">登出</el-button>
+        </el-col>
+      </el-row>
+      <el-row class="button-row" v-if="user.admin || user.sampler || user.tester">
+        <el-col :span="22" class="button-col">
+          <el-button class="button" @click="router.push('/advanced')">高级身份认证</el-button>
+        </el-col>
+      </el-row>
     </el-footer>
   </el-container>
 </template>
@@ -55,10 +65,23 @@ const onLogout = () => {
   align-items: center;
   width: 80%;
 }
+
 .button {
   font-size: 1.2rem;
-  width: 40%;
-  height: 60%;
+  width: 100%;
+  height: 100%;
+}
+
+.button-col {
+  height: 100%;
+}
+
+.button-row {
+  width: 100%;
+  height: 40%;
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
 }
 
 .title {
@@ -87,20 +110,24 @@ const onLogout = () => {
   background-color: #a6ded7;
   border-radius: 1rem;
 }
+
 .footer {
   padding: 0;
   margin: 0;
   /* border: 2px solid black; */
-  height: 10vh;
+  height: 15vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  flex-direction: column;
 }
+
 .item {
   width: 90%;
   height: 8vh;
   /* border: 1px solid black; */
 }
+
 .label {
   display: flex;
   justify-content: left;
@@ -108,6 +135,7 @@ const onLogout = () => {
   font-size: 1.2rem;
   font-weight: bold;
 }
+
 .value {
   display: flex;
   justify-content: left;

@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.healthcodebe.mapper.TestPositionMapper">
+<!--    @TableId(value = "place_id", type = IdType.AUTO)-->
+<!--    private Integer placeId;-->
 
+<!--    @TableField("manager_id_number")-->
+<!--    private String managerIdNumber;-->
+
+<!--    @TableField("start_time")-->
+<!--    private LocalTime startTime;-->
+
+<!--    @TableField("end_time")-->
+<!--    private LocalTime endTime;-->
+    <resultMap id="BaseTestPositionMap" type="com.example.healthcodebe.entity.TestPosition">
+        <result column="place_id" property="placeId" jdbcType="INTEGER" />
+        <result column="manager_id_number" property="managerIdNumber" jdbcType="VARCHAR" />
+        <result column="start_time" property="startTime" jdbcType="TIME" />
+        <result column="end_time" property="endTime" jdbcType="TIME" />
+    </resultMap>
+
+    <resultMap id="BaseTestPositionInfoMap" type="com.example.healthcodebe.entity.TestPositionInfo">
+        <result column="place_id" property="placeId" jdbcType="INTEGER" />
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+        <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+        <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+        <result column="province" property="province" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="county" property="county" jdbcType="VARCHAR" />
+        <result column="village" property="village" jdbcType="VARCHAR" />
+        <result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+        <result column="manager_id_number" property="managerIdNumber" jdbcType="VARCHAR" />
+        <result column="start_time" property="startTime" jdbcType="TIME" />
+        <result column="end_time" property="endTime" jdbcType="TIME" />
+    </resultMap>
+
+    <insert id="addTestPosition" parameterType="com.example.healthcodebe.entity.TestPosition">
+        INSERT INTO test_position
+        (place_id, manager_id_number, start_time, end_time)
+        VALUES
+        (#{placeId}, #{managerIdNumber}, #{startTime}, #{endTime});
+    </insert>
+
+    <update id="updateTestPosition" parameterType="com.example.healthcodebe.entity.TestPosition">
+        UPDATE test_position
+        SET
+        manager_id_number = #{managerIdNumber}, start_time = #{startTime}, end_time = #{endTime}
+        WHERE
+        place_id = #{placeId}
+    </update>
+
+    <select id="getTestPositionByPage" resultMap="BaseTestPositionInfoMap" parameterType="map">
+        SELECT * from test_position AS A NATURAL JOIN place_code AS B
+        ORDER BY A.place_id ASC
+        LIMIT #{condition.page_size}
+        OFFSET #{condition.offset}
+    </select>
+
+    <select id="getTestPositionById" resultMap="BaseTestPositionInfoMap" parameterType="STRING">
+        SELECT * from test_position AS A NATURAL JOIN place_code AS B
+        WHERE
+        A.place_id = #{placeId}
+    </select>
+
+    <select id="getTestPositionByCoordinate" resultMap="BaseTestPositionInfoMap" parameterType="map">
+        SELECT * FROM
+        test_position NATURAL JOIN place_code
+        WHERE
+        longitude >= #{condition.longitude_low} AND
+        #{condition.longitude_high} >= longitude AND
+        latitude >= #{condition.latitude_low} AND
+        #{condition.latitude_high} >= latitude
+    </select>
 </mapper>

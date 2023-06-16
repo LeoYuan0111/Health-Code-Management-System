@@ -42,6 +42,11 @@ const router = createRouter({
       component: () => import('../views/UserInfoView.vue')
     },
     {
+      path: '/advanced',
+      name: 'advanced',
+      component: () => import('../views/AdvancedView.vue')
+    },
+    {
       path: '/sampler' ,
       name: 'sampler' ,
       component: () => import('../views/SamplerMainView.vue')

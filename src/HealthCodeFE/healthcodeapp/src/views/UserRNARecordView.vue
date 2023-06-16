@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, onMounted, watch } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
+import { useRnaRecordStore } from '@/stores/rna_record'
 // import { Record } from '@/components/RNARecord.vue';
-import type { Record } from '@/components/RNARecord.vue';
+import type { RnaRecord } from '@/stores/rna_record'
 import RNARecord from '@/components/RNARecord.vue';
 import { useRouter } from 'vue-router'
+
+const record = useRnaRecordStore()
 
 const router = useRouter()
 
@@ -12,65 +15,23 @@ const onReturn = () => {
   router.push('/main')
 }
 
-
-const records = reactive<Record[]>([
-  {
-    result: true,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: false,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: true,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: false,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: true,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: false,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: true,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: false,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: true,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  },
-  {
-    result: false,
-    time: '2022-12-05 21:41:33',
-    sample_time: '2022-12-05 17:12:16'
-  }
-])
-
 const currentPage = ref(1)
 const pageSize = ref(4)
+const currentRecords = ref<RnaRecord[]>([])
+const records = reactive<RnaRecord[]>([])
 
-const currentRecords = computed(() => {
-  return records.slice(currentPage.value, currentPage.value + pageSize.value)
+// const currentRecords = computed(() => {
+//   return records.slice(currentPage.value, currentPage.value + pageSize.value)
+// })
+watch(currentPage, (newVal, oldVal) => {
+  currentRecords.value = records.slice((newVal - 1) * pageSize.value, newVal * pageSize.value)
+})
+
+
+onMounted(async () => {
+  await record.getRecords()
+  records.push(...record.records)
+  currentRecords.value = records.slice(0, 1 * pageSize.value)
 })
 
 </script>
