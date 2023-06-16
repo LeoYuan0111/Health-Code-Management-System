@@ -113,7 +113,7 @@ const onSubmit = async () => {
       <p class="text">被采样人数: {{number}}</p>
     </el-footer> -->
     <el-main>
-      用户 ID: {{ user_id }}
+      <el-input v-model="user_id" placeholder="用户 ID"></el-input>
       <el-input class="tube_id" placeholder="请输入试管编号" v-model="tube_id"></el-input>
       <el-button type="primary" class="submit" @click="onSubmit">提交</el-button>
     </el-main>
