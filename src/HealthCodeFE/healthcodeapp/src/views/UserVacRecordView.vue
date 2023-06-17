@@ -46,7 +46,7 @@ const records = reactive<Record[]>([
           <IconReturn />
         </el-col>
         <el-col :span="19">
-          <h1 class="title">核酸检测记录</h1>
+          <h1 class="title">疫苗接种记录</h1>
         </el-col>
       </el-row>
     </el-header>
