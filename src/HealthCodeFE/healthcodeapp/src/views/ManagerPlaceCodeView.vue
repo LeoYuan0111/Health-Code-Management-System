@@ -4,6 +4,7 @@ import IconReturn from '@/components/icons/IconReturn.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
 import PlaceCodeView from '@/components/ManagerPlaceCodeCard.vue';
+import { ElMessage } from 'element-plus';
 
 import { Record } from '@/components/ManagerPlaceCodeCard.vue';
 const router = useRouter()
@@ -47,6 +48,7 @@ const form2 = reactive({
 
 const onSubmit1 = () => {
 	console.log(form1);
+  ElMessage.success('提交成功')
 }
 
 const onSubmit2 = () => {

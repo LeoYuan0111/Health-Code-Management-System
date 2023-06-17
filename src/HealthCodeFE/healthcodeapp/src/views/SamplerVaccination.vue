@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
 import IconScanQRCode from '@/components/icons/IconScanQRCode.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
+import { Html5QrcodeScanner, Html5Qrcode } from "html5-qrcode";
+import { getURL } from '@/utils/url'
+import { fetchPostText } from '@/utils/fetch';
+import { ElMessage } from 'element-plus';
+
 const router = useRouter()
 
 const onReturn = () => {
@@ -18,15 +23,51 @@ const form = reactive({
   address: ''
 })
 
-const onSubmit = () => {
-  console.log(form)
-}
+
 
 const ScanHealthCode = ()=>{
   console.log("scan health code")
 }
 
+onMounted(() => {
+  
+  const html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+    fps: 10, qrbox: {
+      width: 250, height: 250
+    }
+  }, false);
+
+
+  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+})
+
+function onScanSuccess(decodedText: string, decodedResult: any) {
+  console.log(`Scan result: ${decodedText}`, decodedResult);
+  form.user_id = decodedText.split('#')[0]
+  // Handle on success condition with the decoded text or result.
+}
+function onScanFailure(error: any) {
+  // handle on error condition, with error.message
+  console.log(error)
+}
+
+const onSubmit = async () => {
+  // fetchPostText(getURL('/sampled_info'), {
+  //   tube_id: tube_id.value,
+  //   user_id: user_id.value
+  // }, {}).then((res) => {
+  //   ElMessage.success('提交成功')
+  //   tube_id.value = ''
+  //   user_id.value = ''
+  // }).catch(e => {
+  //   ElMessage.error('提交失败')
+  // })
+  ElMessage.success('提交成功')
+}
+
+
 </script>
+
 
 <template>
   <el-container>
@@ -41,24 +82,27 @@ const ScanHealthCode = ()=>{
       </el-row>
     </el-header>
     <el-main class="main">
-      <div class="greenback"></div>
+      <!-- <div class="greenback"></div>
       <el-icon size="185">
         <IconScanQRCode class="iconbig" @click="ScanHealthCode"/>
-      </el-icon>
-      
+      </el-icon> -->
+      <div id="reader" width="600px"></div>
       <p class="boldtext">请扫描疫苗接种者健康码</p>
     </el-main>
     <el-footer class="footer">
-      <el-row class="item-row">
-        <el-col :span="10" class="item">
-          接种者姓名
+      <!-- <el-row class="item-row">
+        <el-col :span="7" class="item">
+          身份证号
         </el-col>
         <el-col :span="14" class="item">
-          XXXXXXXXX
+          <el-input v-model="form.user_id" style="width: 100%"></el-input>
         </el-col>
       </el-row>
-      <p class="name"></p>
+      <p class="name"></p> -->
       <el-form :model="form" class="form">
+        <el-form-item label="身份证号">
+          <el-input v-model="form.user_id" style="width: 100%"></el-input>
+        </el-form-item>
         <el-form-item label="接种针数">
           <el-select v-model="form.vac_num" :placeholder="' '" class="input">
             <el-option label="第一针" value=1 class="select_item"/>

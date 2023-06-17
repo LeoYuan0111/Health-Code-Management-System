@@ -107,7 +107,7 @@ onMounted(async () => {
 		<el-footer class="footer">
 			<el-row class="nav-row" justify="space-between">
 				<el-col :span="4" class="nav-block">
-					<el-button type="primary" class="nav-button">
+					<el-button type="primary" class="nav-button" @click="router.push('/place_code/scan')">
 						<el-row class="nav-icon">
 							<el-icon :size="30">
 								<IconQuery />
@@ -120,7 +120,7 @@ onMounted(async () => {
 
 				</el-col>
 				<el-col :span="4" class="nav-block">
-					<el-button type="primary" class="nav-button">
+					<el-button type="primary" class="nav-button" @click="router.push('/appeal')">
 						<el-row class="nav-icon">
 							<el-icon :size="30">
 								<IconRing />
@@ -132,7 +132,7 @@ onMounted(async () => {
 					</el-button>
 				</el-col>
 				<el-col :span="4" class="nav-block">
-					<el-button type="primary" class="nav-button">
+					<el-button type="primary" class="nav-button" @click="router.push('/place_code/request')">
 						<el-row class="nav-icon">
 							<el-icon :size="35">
 								<IconSiteCode />

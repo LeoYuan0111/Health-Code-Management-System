@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import IconReturn from '@/components/icons/IconReturn.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
+import { ElMessage } from 'element-plus';
 
 const router = useRouter()
 
@@ -40,14 +41,17 @@ const is_submit1 = ref(false)
 const onSubmit1 = () => {
   is_submit1.value = true;
 	console.log(form1);
+  ElMessage.success('提交成功')
 }
 
 const onSubmit2 = () => {
   console.log(form2);
+  ElMessage.success('提交成功')
 }
 
 const onSubmit3 = () => {
   console.log(form3);
+  ElMessage.success('提交成功')
 }
 
 
@@ -82,7 +86,7 @@ const onSubmit3 = () => {
           采样点地点
         </el-col>
         <el-col :span="16" class="item" v-if="is_submit1">
-          XXXXXXXX
+          Zijingang Road No.866
         </el-col>
       </el-row>    
       <el-row class="item-row">
@@ -90,7 +94,7 @@ const onSubmit3 = () => {
           采样时间
         </el-col>
         <el-col :span="16" class="item" v-if="is_submit1">
-          XXXXXXXXXXXXXX
+          18:00 - 20:00
         </el-col>
       </el-row>        
     </el-main>

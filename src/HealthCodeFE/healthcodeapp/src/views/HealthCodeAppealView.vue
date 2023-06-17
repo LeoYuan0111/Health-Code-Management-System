@@ -6,7 +6,7 @@ import { ElMessage } from 'element-plus';
 const router = useRouter()
 
 const onReturn = () => {
-	router.push('/manager')
+	router.push('/main')
 }
 
 /*
@@ -17,15 +17,16 @@ const onReturn = () => {
 const form = reactive({
   user_name : '',//加了一条用户姓名，后端可以核对防止管理员输入出错
   user_id : '',
-  color : '',
-  reason : '',
-  time : ''
+  phone: '',
+  site_name: '',
+  site_address: '',
+  address: ''
 })
 
 const onSubmit = () => {
   let date = new Date();
-  form.time = date.toLocaleString();
-	console.log(form);
+  // form.time = date.toLocaleString();
+	// console.log(form);
   ElMessage.success('提交成功')
 }
 
@@ -39,7 +40,7 @@ const onSubmit = () => {
         <IconReturn />
         </el-col>
         <el-col :span="21">
-        <h1 class="title">健康码转码</h1>
+        <h1 class="title">健康码申诉</h1>
         </el-col>
       </el-row>
     </el-header>
@@ -52,15 +53,18 @@ const onSubmit = () => {
         <el-form-item label="身份证号" class="formLabel">
           <el-input v-model="form.user_id" class="input"></el-input>
         </el-form-item>
-        <el-form-item label="转码颜色" class="formLabel">
-          <el-select v-model="form.color" class="input" :placeholder="' '">
-            <el-option label="黄码" value=1 class="select_item"/>
-            <el-option label="红码" value=2 class="select_item"/>
-          </el-select>
+        <el-form-item label="身份证号" class="formLabel">
+          <el-input v-model="form.user_id" class="input"></el-input>
         </el-form-item>
-        <el-form-item label="转码理由" class="formLabel">
-          <el-input v-model="form.reason" class="input" type="textarea" :rows="3"></el-input>
-        </el-form-item> 
+        <el-form-item label="居住地址" class="formLabel">
+          <el-input v-model="form.site_name" class="input"></el-input>
+        </el-form-item>
+        <el-form-item label="当前颜色" class="formLabel">
+          <el-input v-model="form.site_address" class="input"></el-input>
+        </el-form-item>
+        <el-form-item label="申诉理由" class="formLabel">
+          <el-input v-model="form.address" class="input" type="textarea"></el-input>
+        </el-form-item>
       </el-form>
     </el-main>
     <el-footer>
@@ -126,7 +130,7 @@ const onSubmit = () => {
   
   align-items: center;
   flex-direction: column;
-  height: 360px;
+  height: 50vh;
   background-color: #D9D9D9;
   padding:40px 20px;
   margin: 80px -32px;

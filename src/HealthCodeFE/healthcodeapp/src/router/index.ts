@@ -27,6 +27,21 @@ const router = createRouter({
       component: () => import('../views/RNASiteView.vue')
     },
     {
+      path: '/place_code/request',
+      name: 'place_code_request',
+      component: () => import('../views/PlaceCodeRequestView.vue')
+    },  
+    {
+      path: '/place_code/scan',
+      name: 'place_code_scan',
+      component: () => import('../views/PlaceCodeScanView.vue')
+    },
+    {
+      path: '/appeal',
+      name: 'appeal',
+      component: () => import('../views/HealthCodeAppealView.vue')
+    },
+    {
       path: '/user/rna_record',
       name: 'user_rna_record',
       component: () => import('../views/UserRNARecordView.vue')

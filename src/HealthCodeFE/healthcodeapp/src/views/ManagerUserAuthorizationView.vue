@@ -4,6 +4,7 @@ import IconReturn from '@/components/icons/IconReturn.vue';
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
 import IconFile from '@/components/icons/IconFile.vue';
+import { ElMessage } from 'element-plus';
 const router = useRouter()
 
 const onReturn = () => {
@@ -24,6 +25,7 @@ const UploadFile = () => {
 
 const OnSubmit = () => {
   console.log(form)
+  ElMessage.success('提交成功')
 }
 
 </script>
