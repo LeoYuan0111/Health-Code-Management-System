@@ -53,8 +53,8 @@ const onSubmit = () => {
         <el-form-item label="身份证号" class="formLabel">
           <el-input v-model="form.user_id" class="input"></el-input>
         </el-form-item>
-        <el-form-item label="身份证号" class="formLabel">
-          <el-input v-model="form.user_id" class="input"></el-input>
+        <el-form-item label="联系电话" class="formLabel">
+          <el-input v-model="form.phone" class="input"></el-input>
         </el-form-item>
         <el-form-item label="居住地址" class="formLabel">
           <el-input v-model="form.site_name" class="input"></el-input>
